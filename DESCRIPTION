@@ -1,0 +1,40 @@
+Package: jeksterslabRdata
+Version: 0.9.0
+Title: Jekster's Lab Data Generation Utilities
+Authors@R:
+    person(
+        given = "Ivan Jacob Agaloos",
+        family = "Pesigan",
+        role = c("aut", "cre"),
+        email = "i.j.a.pesigan@connect.um.edu.mo",
+        comment = c(ORCID = "0000-0003-4818-8420")
+    )
+Description: A collection of functions that I find useful in studying
+    data generation.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Language: en-US
+LazyData: true
+VignetteBuilder: knitr
+Roxygen: list(markdown = TRUE)
+URL: https://github.com/jeksterslabds/jeksterslabRdata
+BugReports: https://github.com/jeksterslabds/jeksterslabRdata/issues
+Depends:
+	R (>= 3.5.0)
+Imports:
+	utils,
+	stats,
+    MASS,
+    jeksterslabRutils,
+    jeksterslabRsem
+Remotes:
+    jeksterslabds/jeksterslabRutils,
+    jeksterslabds/jeksterslabRsem
+Suggests:
+	knitr,
+	rmarkdown,
+	testthat,
+    microbenchmark,
+    magick,
+    pdftools
+RoxygenNote: 7.1.0

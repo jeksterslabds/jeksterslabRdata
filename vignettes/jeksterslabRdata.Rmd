@@ -1,0 +1,37 @@
+---
+title: "Introduction to jeksterslabRdata"
+author: "Ivan Jacob Agaloos Pesigan"
+date: "`r Sys.Date()`"
+description: >
+  Learn how to get started with the basics of jeksterslabRdata.
+output:
+  rmarkdown::html_vignette:
+    toc: true
+vignette: >
+  %\VignetteIndexEntry{Introduction to jeksterslabRdata}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+`jeksterslabRdata` is a collection of functions that I find useful in studying data generation.
+
+## Installation
+
+You can install the released version of `jeksterslabRdata` from [GitHub](https://github.com/jeksterslabds/jeksterslabRdata) with:
+
+```r
+library(devtools)
+install_github("jeksterslabds/jeksterslabRdata")
+```
+
+## Example
+
+See [GitHub Pages](https://jeksterslabds.github.io/jeksterslabRdata/index.html)
+for package documentation.
