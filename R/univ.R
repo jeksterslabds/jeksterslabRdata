@@ -134,7 +134,7 @@ univ <- function(n, # rFUN
   if (is.null(R)) {
     single_rep <- TRUE
   } else {
-    if (R <= 1) {
+    if (R == 1) {
       single_rep <- TRUE
     } else {
       single_rep <- FALSE

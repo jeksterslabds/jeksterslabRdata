@@ -159,6 +159,17 @@ x <- univ(
   mean = mu,
   sd = sigma
 )
+# same result
+str(
+  univ(
+  n = n,
+  rFUN = rnorm,
+  R = 1,
+  mean = mu,
+  sd = sigma
+),
+list.len = 6
+)
 hist(
   x,
   main = expression(
