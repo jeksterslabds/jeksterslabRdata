@@ -162,13 +162,13 @@ x <- univ(
 # same result
 str(
   univ(
-  n = n,
-  rFUN = rnorm,
-  R = 1,
-  mean = mu,
-  sd = sigma
-),
-list.len = 6
+    n = n,
+    rFUN = rnorm,
+    R = 1,
+    mean = mu,
+    sd = sigma
+  ),
+  list.len = 6
 )
 hist(
   x,
