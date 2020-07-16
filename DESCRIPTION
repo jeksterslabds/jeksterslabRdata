@@ -25,16 +25,18 @@ Imports:
 	utils,
 	stats,
     MASS,
-    jeksterslabRutils,
+    foreach,
+    doParallel,
+    doFuture,
+    future,
+    jeksterslabRpar,
     jeksterslabRsem
 Remotes:
-    jeksterslabds/jeksterslabRutils,
+    jeksterslabds/jeksterslabRpar,
     jeksterslabds/jeksterslabRsem
 Suggests:
 	knitr,
 	rmarkdown,
 	testthat,
-    microbenchmark,
-    magick,
-    pdftools
+    microbenchmark
 RoxygenNote: 7.1.1
