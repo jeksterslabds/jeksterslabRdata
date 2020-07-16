@@ -46,6 +46,8 @@
 #' @inheritParams jeksterslabRdist::mvnpdf
 #' @inheritParams univ
 #' @inherit jeksterslabRdist::mvnpdf details references
+#' @param df Logical.
+#' Convert matrix to data.frame.
 #' @param tol Numeric.
 #' Tolerance (relative to largest variance)
 #' for numerical lack of positive-definiteness in `Sigma`.
@@ -106,6 +108,7 @@
 mvn <- function(n, # mvrnorm
                 mu = NULL,
                 Sigma,
+                df = TRUE,
                 tol = 1e-6,
                 empirical = FALSE,
                 # iter
@@ -126,12 +129,14 @@ mvn <- function(n, # mvrnorm
                   Sigma,
                   tol,
                   empirical) {
-    mvrnorm(
-      n = n,
-      mu = mu,
-      Sigma = Sigma,
-      tol = tol,
-      empirical = empirical
+    as.data.frame(
+      mvrnorm(
+        n = n,
+        mu = mu,
+        Sigma = Sigma,
+        tol = tol,
+        empirical = empirical
+      )
     )
   }
   #------------------------------------------------------------------------------
