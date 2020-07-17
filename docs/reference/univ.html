@@ -45,15 +45,9 @@ or a list of \(n \times 1\) univariate data vectors of length R.
 The default data generating function
 is the normal distribution
 $$
-  X
-  \sim
-  \mathcal{N}
-  \left(
-    \mu,
-    \sigma^2
-  \right) .
-  %(\#eq:dist-X-norm)
-$$" />
+    X \sim \mathcal{N} \left( \mu, \sigma^2 \right) .
+    %(\#eq:dist-X-norm)
+  $$" />
 
 
 
@@ -111,13 +105,25 @@ $$" />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/tests/test_2_plus_2.html">Test: test_2_plus_2</a>
+      <a href="../articles/examples/examples_fit.html">Examples for the fit() function</a>
     </li>
     <li>
-      <a href="../articles/tests/test_univ_exp.html">Test: Univariate Data Generation - Exponential Distribution</a>
+      <a href="../articles/examples/examples_mvn.html">Examples for the mvn() function</a>
     </li>
     <li>
-      <a href="../articles/tests/test_univ_norm.html">Test: Univariate Data Generation - Normal Distribution</a>
+      <a href="../articles/examples/examples_mvnram.html">Examples for the mvnram() function</a>
+    </li>
+    <li>
+      <a href="../articles/examples/examples_mvnramsigma2.html">Examples for the mvnramsigma2() function</a>
+    </li>
+    <li>
+      <a href="../articles/examples/examples_univ.html">Examples for the univ() function</a>
+    </li>
+    <li>
+      <a href="../articles/tests/test_univ_exp.html">Tests for the univ() function - Exponential Distribution</a>
+    </li>
+    <li>
+      <a href="../articles/tests/test_univ_norm.html">Tests for the univ() function - Normal Distribution</a>
     </li>
   </ul>
 </li>
@@ -156,15 +162,9 @@ or a list of \(n \times 1\) univariate data vectors of length <code>R</code>.
 The default data generating function
 is the normal distribution
 $$
-  X
-  \sim
-  \mathcal{N}
-  \left(
-    \mu,
-    \sigma^2
-  \right) .
-  %(\#eq:dist-X-norm)
-$$</p>
+    X \sim \mathcal{N} \left( \mu, \sigma^2 \right) .
+    %(\#eq:dist-X-norm)
+  $$</p>
     </div>
 
     <pre class="usage"><span class='fu'>univ</span>(
@@ -203,16 +203,12 @@ Data generating function to generate univariate data.</p></td>
     <tr>
       <th>R</th>
       <td><p>Integer.
-Number of Monte Carlo replications.
-If <code>R</code> is not provided,
+Number of Monte Carlo replications. If <code>R</code> is not provided,
 the function produces a single random data set.
-If <code>R</code> is an integer greater than 1,
-(e.g., <code>R = 10</code>),
-the function produces
-multiple random data sets
+If <code>R</code> is an integer greater than 1, (e.g., <code>R = 10</code>),
+the function produces multiple random data sets
 stored in each element of a list of length <code>R</code>.
-<code>par</code> and all succeeding arguments are only relevant
-when <code>R &gt; 1</code>.</p></td>
+<code>par</code> and all succeeding arguments are only relevant when <code>R &gt; 1</code>.</p></td>
     </tr>
     <tr>
       <th>par</th>
@@ -282,88 +278,21 @@ before using this option.</p></td>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>If <code>R = NULL</code> or <code>R = 1</code>,
-returns an
-\(
-  n \times 1
-\)
-univariate data vector
-generated using <code>rFUN</code> and parameters passed to <code>...</code>.
-If <code>R</code> is an integer greater than 1,
-(e.g., <code>R = 10</code>)
-returns a list of length <code>R</code> of
-\(
-  n
-  \times 1
-\)
-univariate data vector
+returns an \( n \times 1 \) univariate data vector generated
+using <code>rFUN</code> and parameters passed to <code>...</code>.
+If <code>R</code> is an integer greater than 1, (e.g., <code>R = 10</code>)
+returns a list of length <code>R</code> of \( n \times 1 \) univariate data vector
 generated using <code>rFUN</code> and parameters passed to <code>...</code>.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>The univariate distribution and parameters used
-in the data generating process
-can be specified using <code>rFUN</code> and <code>...</code>.</p>
-<p>Options for explicit parallelism are provided
-when <code>R &gt; 1</code> especially when <code>R</code> is large.
-See <code>par</code> and suceeding arguments.</p>
+in the data generating process can be specified using <code>rFUN</code> and <code>...</code>.</p>
+<p>Options for explicit parallelism are provided when <code>R &gt; 1</code>
+especially when <code>R</code> is large. See <code>par</code> and suceeding arguments.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>n</span> <span class='kw'>&lt;-</span> <span class='fl'>1000</span>
-<span class='no'>R</span> <span class='kw'>&lt;-</span> <span class='fl'>5</span>
-<span class='co'># normal distribution---------------------------------------------------------</span>
-<span class='no'>mu</span> <span class='kw'>&lt;-</span> <span class='fl'>0</span>
-<span class='no'>sigma2</span> <span class='kw'>&lt;-</span> <span class='fl'>1</span>
-<span class='no'>sigma</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>sqrt</a></span>(<span class='no'>sigma2</span>)
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>univ</span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='no'>n</span>, <span class='kw'>rFUN</span> <span class='kw'>=</span> <span class='no'>rnorm</span>, <span class='kw'>mean</span> <span class='kw'>=</span> <span class='no'>mu</span>, <span class='kw'>sd</span> <span class='kw'>=</span> <span class='no'>sigma</span>)
-<span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt;  num [1:1000] -0.511 -0.895 -0.991 1.474 0.402 ...</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/hist.html'>hist</a></span>(<span class='no'>x</span>, <span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>"Normal Distribution"</span>)</div><div class='img'><img src='univ-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>univ</span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='no'>n</span>, <span class='kw'>rFUN</span> <span class='kw'>=</span> <span class='no'>rnorm</span>, <span class='kw'>R</span> <span class='kw'>=</span> <span class='no'>R</span>, <span class='kw'>mean</span> <span class='kw'>=</span> <span class='no'>mu</span>, <span class='kw'>sd</span> <span class='kw'>=</span> <span class='no'>sigma</span>)
-<span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; List of 5
-#&gt;  $ : num [1:1000] -0.0353 -2.5796 -1.6272 1.2568 0.014 ...
-#&gt;  $ : num [1:1000] -0.267 0.148 -2.443 0.257 0.188 ...
-#&gt;  $ : num [1:1000] -0.332 0.931 1.691 0.66 -1.114 ...
-#&gt;  $ : num [1:1000] -1.38 0.57 0.902 0.684 0.298 ...
-#&gt;  $ : num [1:1000] 0.58 0.409 0.414 0.729 -2.56 ...</div><div class='input'><span class='co'># bernoulli distribution------------------------------------------------------</span>
-<span class='no'>n_trials</span> <span class='kw'>&lt;-</span> <span class='fl'>1</span>
-<span class='no'>p</span> <span class='kw'>&lt;-</span> <span class='fl'>0.50</span>
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>univ</span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='no'>n</span>, <span class='kw'>rFUN</span> <span class='kw'>=</span> <span class='no'>rbinom</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='no'>n_trials</span>, <span class='kw'>prob</span> <span class='kw'>=</span> <span class='no'>p</span>)
-<span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt;  int [1:1000] 0 1 0 1 1 1 1 0 1 1 ...</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/barplot.html'>barplot</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/table.html'>table</a></span>(<span class='no'>x</span>), <span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>"Bernoulli Distribution"</span>)</div><div class='img'><img src='univ-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>univ</span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='no'>n</span>, <span class='kw'>rFUN</span> <span class='kw'>=</span> <span class='no'>rbinom</span>, <span class='kw'>R</span> <span class='kw'>=</span> <span class='no'>R</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='no'>n_trials</span>, <span class='kw'>prob</span> <span class='kw'>=</span> <span class='no'>p</span>)
-<span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; List of 5
-#&gt;  $ : int [1:1000] 0 1 0 1 0 0 0 0 0 1 ...
-#&gt;  $ : int [1:1000] 0 1 1 1 1 1 1 1 0 1 ...
-#&gt;  $ : int [1:1000] 0 1 1 1 0 0 1 0 1 1 ...
-#&gt;  $ : int [1:1000] 0 1 0 0 0 1 1 0 0 1 ...
-#&gt;  $ : int [1:1000] 0 1 1 1 0 1 1 0 0 1 ...</div><div class='input'><span class='co'># binomial distribution-------------------------------------------------------</span>
-<span class='no'>n_trials</span> <span class='kw'>&lt;-</span> <span class='fl'>20</span>
-<span class='no'>p</span> <span class='kw'>&lt;-</span> <span class='fl'>0.50</span>
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>univ</span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='no'>n</span>, <span class='kw'>rFUN</span> <span class='kw'>=</span> <span class='no'>rbinom</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='no'>n_trials</span>, <span class='kw'>prob</span> <span class='kw'>=</span> <span class='no'>p</span>)
-<span class='fu'><a href='https://rdrr.io/r/graphics/barplot.html'>barplot</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/table.html'>table</a></span>(<span class='no'>x</span>), <span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>"Binomial Distribution"</span>)</div><div class='img'><img src='univ-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt;  int [1:1000] 7 9 12 9 6 10 9 13 13 9 ...</div><div class='input'><span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>univ</span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='no'>n</span>, <span class='kw'>rFUN</span> <span class='kw'>=</span> <span class='no'>rbinom</span>, <span class='kw'>R</span> <span class='kw'>=</span> <span class='no'>R</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='no'>n_trials</span>, <span class='kw'>prob</span> <span class='kw'>=</span> <span class='no'>p</span>)
-<span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; List of 5
-#&gt;  $ : int [1:1000] 9 6 9 10 11 10 8 9 14 11 ...
-#&gt;  $ : int [1:1000] 9 9 11 11 8 10 9 15 8 11 ...
-#&gt;  $ : int [1:1000] 12 11 14 10 10 13 14 12 14 9 ...
-#&gt;  $ : int [1:1000] 14 8 10 11 7 6 9 11 11 12 ...
-#&gt;  $ : int [1:1000] 11 9 10 9 9 10 8 11 11 8 ...</div><div class='input'><span class='co'># exponential distribution----------------------------------------------------</span>
-<span class='no'>rate</span> <span class='kw'>&lt;-</span> <span class='fl'>1</span>
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>univ</span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='no'>n</span>, <span class='kw'>rFUN</span> <span class='kw'>=</span> <span class='no'>rexp</span>, <span class='kw'>rate</span> <span class='kw'>=</span> <span class='no'>rate</span>)
-<span class='fu'><a href='https://rdrr.io/r/graphics/hist.html'>hist</a></span>(<span class='no'>x</span>, <span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>"Exponential Distribution"</span>)</div><div class='img'><img src='univ-4.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt;  num [1:1000] 1.346 0.259 1.112 0.767 2.968 ...</div><div class='input'><span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>univ</span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='no'>n</span>, <span class='kw'>rFUN</span> <span class='kw'>=</span> <span class='no'>rexp</span>, <span class='kw'>R</span> <span class='kw'>=</span> <span class='no'>R</span>, <span class='kw'>rate</span> <span class='kw'>=</span> <span class='no'>rate</span>)
-<span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; List of 5
-#&gt;  $ : num [1:1000] 6.2 0.154 0.573 3.002 1.342 ...
-#&gt;  $ : num [1:1000] 1.206 0.772 0.981 0.159 3.346 ...
-#&gt;  $ : num [1:1000] 1.8961 0.4627 0.0147 0.9453 0.6 ...
-#&gt;  $ : num [1:1000] 0.0458 1.0754 1.7085 0.1172 1.4202 ...
-#&gt;  $ : num [1:1000] 0.9039 0.2908 2.285 2.7018 0.0932 ...</div><div class='input'><span class='co'># rbind = TRUE----------------------------------------------------------------</span>
-<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>42</span>)
-<span class='fu'>univ</span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>rFUN</span> <span class='kw'>=</span> <span class='no'>rnorm</span>, <span class='kw'>R</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>rbind</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>mean</span> <span class='kw'>=</span> <span class='no'>mu</span>, <span class='kw'>sd</span> <span class='kw'>=</span> <span class='no'>sigma</span>)</div><div class='output co'>#&gt;            [,1]       [,2]        [,3]       [,4]       [,5]
-#&gt; [1,]  1.3709584 -0.5646982  0.36312841  0.6328626  0.4042683
-#&gt; [2,] -0.1061245  1.5115220 -0.09465904  2.0184237 -0.0627141
-#&gt; [3,]  1.3048697  2.2866454 -1.38886070 -0.2787888 -0.1333213
-#&gt; [4,]  0.6359504 -0.2842529 -2.65645542 -2.4404669  1.3201133
-#&gt; [5,] -0.3066386 -1.7813084 -0.17191736  1.2146747  1.8951935</div><div class='input'><span class='co'># rbind = FALSE---------------------------------------------------------------</span>
-<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>42</span>)
-<span class='fu'>univ</span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>rFUN</span> <span class='kw'>=</span> <span class='no'>rnorm</span>, <span class='kw'>R</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>rbind</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>mean</span> <span class='kw'>=</span> <span class='no'>mu</span>, <span class='kw'>sd</span> <span class='kw'>=</span> <span class='no'>sigma</span>)</div><div class='output co'>#&gt;            [,1]        [,2]       [,3]       [,4]       [,5]
-#&gt; [1,]  1.3709584 -0.10612452  1.3048697  0.6359504 -0.3066386
-#&gt; [2,] -0.5646982  1.51152200  2.2866454 -0.2842529 -1.7813084
-#&gt; [3,]  0.3631284 -0.09465904 -1.3888607 -2.6564554 -0.1719174
-#&gt; [4,]  0.6328626  2.01842371 -0.2787888 -2.4404669  1.2146747
-#&gt; [5,]  0.4042683 -0.06271410 -0.1333213  1.3201133  1.8951935</div></pre>
+    <pre class="examples"><div class='input'><span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>univ</span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>1000</span>, <span class='kw'>rFUN</span> <span class='kw'>=</span> <span class='no'>rnorm</span>, <span class='kw'>mean</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>sd</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>sqrt</a></span>(<span class='fl'>225</span>))
+<span class='no'>xstar</span> <span class='kw'>&lt;-</span> <span class='fu'>univ</span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>1000</span>, <span class='kw'>rFUN</span> <span class='kw'>=</span> <span class='no'>rnorm</span>, <span class='kw'>mean</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>sd</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>sqrt</a></span>(<span class='fl'>225</span>), <span class='kw'>R</span> <span class='kw'>=</span> <span class='fl'>1000</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

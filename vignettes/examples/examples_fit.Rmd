@@ -1,0 +1,199 @@
+---
+title: "Examples for the fit() function"
+author: "Ivan Jacob Agaloos Pesigan"
+date: "`r Sys.Date()`"
+description: >
+  Examples for the fit() function.
+output:
+  rmarkdown::html_vignette:
+    toc: true
+vignette: >
+  %\VignetteIndexEntry{Examples for the fit() function}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r}
+library(jeksterslabRdata)
+```
+
+## Documentation
+
+See `fit()` for more details.
+
+## Examples
+
+### `univ()`
+
+#### Normal Distribution
+
+##### Generate Data
+
+```{r}
+xstar <- univ(n = 100, rFUN = rnorm, mean = 100, sd = sqrt(225), R = 100)
+```
+
+##### Fit the `mean()` Function Using `fit()`
+
+Run the function.
+
+```{r}
+thetahatstar <- fit(Xstar = xstar, fitFUN = mean, rbind = TRUE)
+```
+
+Explore the output.
+
+```{r}
+str(thetahatstar)
+hist(thetahatstar,
+  main = expression("Sampling distribution of" ~ hat(mu)),
+  xlab = expression(hat(mu))
+)
+```
+
+##### Fit the `var()` Function Using `fit()`
+
+Run the function.
+
+```{r}
+thetahatstar <- fit(Xstar = xstar, fitFUN = var, rbind = TRUE)
+```
+
+Explore the output.
+
+```{r}
+str(thetahatstar)
+hist(thetahatstar,
+  main = expression("Sampling distribution of" ~ hat(sigma)^2),
+  xlab = expression(hat(sigma)^2)
+)
+```
+
+#### Bernoulli Distribution
+
+##### Generate Data
+
+```{r}
+xstar <- univ(n = 100, rFUN = rbinom, size = 1, prob = 0.50, R = 100)
+```
+
+##### Fit the `mean()` Function Using `fit()`
+
+Run the function.
+
+```{r}
+thetahatstar <- fit(Xstar = xstar, fitFUN = mean, rbind = TRUE)
+```
+
+Explore the output.
+
+```{r}
+str(thetahatstar)
+hist(thetahatstar,
+  main = expression("Sampling distribution of" ~ hat(mu)),
+  xlab = expression(hat(mu))
+)
+```
+
+##### Fit the `var()` Function Using `fit()`
+
+Run the function.
+
+```{r}
+thetahatstar <- fit(Xstar = xstar, fitFUN = var, rbind = TRUE)
+```
+
+Explore the output.
+
+```{r}
+str(thetahatstar)
+hist(thetahatstar,
+  main = expression("Sampling distribution of" ~ hat(sigma)^2),
+  xlab = expression(hat(sigma)^2)
+)
+```
+
+#### Binomial Distribution
+
+##### Generate Data
+
+```{r}
+xstar <- univ(n = 100, rFUN = rbinom, size = 40, prob = 0.50, R = 100)
+```
+
+##### Fit the `mean()` Function Using `fit()`
+
+Run the function.
+
+```{r}
+thetahatstar <- fit(Xstar = xstar, fitFUN = mean, rbind = TRUE)
+```
+
+Explore the output.
+
+```{r}
+str(thetahatstar)
+hist(thetahatstar,
+  main = expression("Sampling distribution of" ~ hat(mu)),
+  xlab = expression(hat(mu))
+)
+```
+
+##### Fit the `var()` Function Using `fit()`
+
+Run the function.
+
+```{r}
+thetahatstar <- fit(Xstar = xstar, fitFUN = var, rbind = TRUE)
+```
+
+Explore the output.
+
+```{r}
+str(thetahatstar)
+hist(thetahatstar,
+  main = expression("Sampling distribution of" ~ hat(sigma)^2),
+  xlab = expression(hat(sigma)^2)
+)
+```
+
+### `mvn()`
+
+##### Generate Data
+
+```{r}
+Sigma <- matrix(
+  data = c(1, 0.50, 0.50, 1),
+  ncol = 2
+)
+Xstar <- mvn(n = 100, Sigma = Sigma, R = 100)
+```
+
+##### Fit a custom `cov()` Function Using `fit()`
+
+Run the function.
+
+```{r}
+foo <- function(X) {
+  as.vector(cov(X))
+}
+thetahatstar <- fit(Xstar = Xstar, fitFUN = foo, rbind = TRUE)
+```
+
+Explore the output.
+
+```{r}
+thetahatstar <- thetahatstar[, 2]
+str(thetahatstar)
+hist(thetahatstar,
+  main = expression("Sampling distribution of" ~ hat(rho)),
+  xlab = expression(hat(rho))
+)
+```

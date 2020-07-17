@@ -4,23 +4,19 @@
 \alias{mvn}
 \title{Generate Multivariate Normal Data
 \eqn{
-  \mathbf{X}
-  \sim
-  \mathcal{N}_{k}
-  \left(
-    \boldsymbol{\mu},
-    \boldsymbol{\Sigma}
-  \right)
-  %(\#eq:dist-X-mvn)
-}}
+    \mathbf{X} \sim \mathcal{N}_{k}
+    \left( \boldsymbol{\mu}, \boldsymbol{\Sigma} \right)
+    %(\#eq:dist-X-mvn)
+  }}
 \usage{
 mvn(
   n,
   mu = NULL,
   Sigma,
-  df = TRUE,
   tol = 1e-06,
   empirical = FALSE,
+  df = FALSE,
+  varnames = NULL,
   R = NULL,
   par = FALSE,
   ncores = NULL,
@@ -43,28 +39,28 @@ Location parameter mean vector \eqn{\boldsymbol{\mu}} of length \eqn{k}.}
 \eqn{k \times k} variance-covariance matrix
 \eqn{\boldsymbol{\Sigma}}.}
 
-\item{df}{Logical.
-Convert matrix to data.frame.}
-
 \item{tol}{Numeric.
 Tolerance (relative to largest variance)
 for numerical lack of positive-definiteness in \code{Sigma}.}
 
 \item{empirical}{Logical.
-If \code{TRUE}, \code{mu} and \code{Sigma} specify the empirical
-not population mean and covariance matrix.}
+If \code{TRUE}, \code{mu} and \code{Sigma} specify the empirical,
+not population. mean and covariance matrix.}
+
+\item{df}{Logical.
+If \code{TRUE}, the function returns a data frame.
+If \code{FALSE}, the function returns a matrix.}
+
+\item{varnames}{Character string.
+Optional column names with the same length as \code{mu}.}
 
 \item{R}{Integer.
-Number of Monte Carlo replications.
-If \code{R} is not provided,
+Number of Monte Carlo replications. If \code{R} is not provided,
 the function produces a single random data set.
-If \code{R} is an integer greater than 1,
-(e.g., \code{R = 10}),
-the function produces
-multiple random data sets
+If \code{R} is an integer greater than 1, (e.g., \code{R = 10}),
+the function produces multiple random data sets
 stored in each element of a list of length \code{R}.
-\code{par} and all succeeding arguments are only relevant
-when \code{R > 1}.}
+\code{par} and all succeeding arguments are only relevant when \code{R > 1}.}
 
 \item{par}{Logical.
 If \code{TRUE}, use multiple cores.
@@ -101,83 +97,46 @@ Names of objects to pass to \code{\link[parallel:clusterApply]{parallel::cluster
 Ignored if \code{mc = TRUE}.}
 }
 \value{
-If \code{R = NULL} or \code{R = 1},
-returns an \eqn{n \times k} multivariate normal data matrix generated
-using the mean vector \code{mu}
-\eqn{\left( \boldsymbol{\mu} \right)}
-and the variance-covariance matrix \code{Sigma}
-\eqn{\left( \boldsymbol{\Sigma} \right)}
-provided.
-If \code{R} is an integer greater than 1,
-(e.g., \code{R = 10})
-returns a list of length \code{R} of
-\eqn{n \times k} multivariate normal data matrices generated
-using the mean vector \code{mu}
-and the variance-covariance matrix
-\code{Sigma} provided.
+If \code{R = NULL} or \code{R = 1}, returns an \eqn{n \times k}
+multivariate normal data matrix or data frame .
+If \code{R} is an integer greater than 1, (e.g., \code{R = 10})
+returns a list of length \code{R} of \eqn{n \times k}
+multivariate normal data matrix or data frame.
 }
 \description{
 Generates an \eqn{n \times k} multivariate data matrix
 or a list of \eqn{n \times k} multivariate data matrices of length \code{R}
 from the multivariate normal distribution
 \deqn{
-  \mathbf{X}
-  \sim
-  \mathcal{N}_{k}
-  \left(
-    \boldsymbol{\mu},
-    \boldsymbol{\Sigma}
-  \right) .
-  %(\#eq:dist-X-mvn)
-}
-This function is a wrapper around
-\code{\link[MASS:mvrnorm]{MASS::mvrnorm()}}.
+    \mathbf{X} \sim \mathcal{N}_{k}
+    \left( \boldsymbol{\mu}, \boldsymbol{\Sigma} \right) .
+    %(\#eq:dist-X-mvn)
+  }
+This function is a wrapper around \code{\link[MASS:mvrnorm]{MASS::mvrnorm()}}.
 }
 \details{
-The multivariate normal distribution has two parameters,
-namely the
-\eqn{k \times 1} mean vector
-\code{mu} \eqn{\left( \boldsymbol{\mu} \right)}
-and the
-\eqn{k \times k} variance-covariance matrix
-\code{Sigma} \eqn{\left( \boldsymbol{\Sigma} \right)}.
+The multivariate normal distribution has two parameters, namely
+the \eqn{k \times 1} mean vector \code{mu} \eqn{\left( \boldsymbol{\mu} \right)}
+and the \eqn{k \times k} variance-covariance matrix \code{Sigma}
+\eqn{\left( \boldsymbol{\Sigma} \right)}.
 If \code{mu} is not provided,
 it is set to a vector of zeroes with the appropriate length.
 
-Options for explicit parallelism are provided
-when \code{R > 1} especially when \code{R} is large.
-See \code{par} and suceeding arguments.
+Options for explicit parallelism are provided when \code{R > 1}
+especially when \code{R} is large. See \code{par} and suceeding arguments.
 }
 \examples{
+mu <- c(100, 100, 100)
 Sigma <- matrix(
-  data = c(
-    225, 112.50, 56.25,
-    112.5, 225, 112.5,
-    56.25, 112.50, 225
-  ),
+  data = c(225, 112.50, 56.25, 112.5, 225, 112.5, 56.25, 112.50, 225),
   ncol = 3
 )
-mu <- c(100, 100, 100)
-# single random data set------------------------------------------------------
-X <- mvn(
-  n = 100,
-  mu = mu,
-  Sigma = Sigma
-)
-str(X, list.len = 6)
-# multiple random data sets---------------------------------------------------
-X <- mvn(
-  n = 100,
-  mu = mu,
-  Sigma = Sigma,
-  R = 10
-)
-str(X, list.len = 6)
+X <- mvn(n = 100, mu = mu, Sigma = Sigma)
+Xstar <- mvn(n = 100, mu = mu, Sigma = Sigma, R = 100)
 }
 \references{
 Venables, W. N., Ripley, B. D., & Venables, W. N. (2002).
-\emph{Modern applied statistics with S}.
-New York, N.Y: Springer.
+\emph{Modern applied statistics with S}.  New York, N.Y: Springer.
 
 \href{https://en.wikipedia.org/wiki/Multivariate_normal_distribution}{Wikipedia: Multivariate normal distribution}
 }

@@ -1,0 +1,155 @@
+---
+title: "Examples for the univ() function"
+author: "Ivan Jacob Agaloos Pesigan"
+date: "`r Sys.Date()`"
+description: >
+  Examples for the univ() function.
+output:
+  rmarkdown::html_vignette:
+    toc: true
+vignette: >
+  %\VignetteIndexEntry{Examples for the univ() function}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r}
+library(jeksterslabRdata)
+```
+
+## Documentation
+
+See `univ()` for more details.
+
+## Examples
+
+### Normal Distribution
+
+#### Single Random Data Set
+
+Run the function.
+
+```{r}
+x <- univ(n = 100, rFUN = rnorm, mean = 100, sd = sqrt(225))
+```
+
+Explore the output.
+
+```{r}
+str(x, list.len = 6)
+hist(x, main = expression(italic(N)(list(mu == 100, sigma^2 == 225))))
+```
+
+#### Multiple Random Data Sets
+
+Run the function.
+
+```{r}
+xstar <- univ(n = 100, rFUN = rnorm, mean = 100, sd = sqrt(225), R = 100)
+```
+
+Explore the output.
+
+```{r}
+str(xstar, list.len = 6)
+```
+
+### Bernoulli Distribution
+
+#### Single Random Data Set
+
+Run the function.
+
+```{r}
+x <- univ(n = 100, rFUN = rbinom, size = 1, prob = 0.50)
+```
+
+Explore the output.
+
+```{r}
+str(x, list.len = 6)
+barplot(table(x), main = expression(italic("Bernoulli")(p == 0.50)))
+```
+
+#### Multiple Random Data Sets
+
+Run the function.
+
+```{r}
+x <- univ(n = 100, rFUN = rbinom, size = 1, prob = 0.50, R = 100)
+```
+
+Explore the output.
+
+```{r}
+str(xstar, list.len = 6)
+```
+
+### Binomial Distribution
+
+#### Single Random Data Set
+
+Run the function.
+
+```{r}
+x <- univ(n = 100, rFUN = rbinom, size = 20, prob = 0.50)
+```
+
+Explore the output.
+
+```{r}
+str(x, list.len = 6)
+barplot(table(x), main = expression(italic("Binomial")(list(n == 20, p == 0.50))))
+```
+
+#### Multiple Random Data Sets
+
+Run the function.
+
+```{r}
+x <- univ(n = 100, rFUN = rbinom, size = 20, prob = 0.50, R = 100)
+```
+
+Explore the output.
+
+```{r}
+str(xstar, list.len = 6)
+```
+
+### Exponential Distribution
+
+#### Single Random Data Set
+
+Run the function.
+
+```{r}
+x <- univ(n = 100, rFUN = rexp, rate = 1)
+```
+
+Explore the output.
+
+```{r}
+str(x, list.len = 6)
+hist(x, main = expression(italic(exp)(lambda == 1)))
+```
+
+#### Multiple Random Data Sets
+
+Run the function.
+
+```{r}
+xstar <- univ(n = 100, rFUN = rexp, rate = 1, R = 100)
+```
+
+Explore the output.
+
+```{r}
+str(xstar, list.len = 6)
+```

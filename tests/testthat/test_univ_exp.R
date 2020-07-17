@@ -1,10 +1,14 @@
 #' ---
-#' title: "Test: Univariate Data Generation - Exponential Distribution"
+#' title: "Tests for the univ() function - Exponential Distribution"
 #' author: "Ivan Jacob Agaloos Pesigan"
 #' date: "`r Sys.Date()`"
-#' resultput: rmarkdown::html_vignette
+#' description: >
+#'   Tests for the univ() function - Exponential Distribution.
+#' output:
+#'   rmarkdown::html_vignette:
+#'     toc: true
 #' vignette: >
-#'   %\VignetteIndexEntry{Test: Univariate Data Generation - Exponential Distribution}
+#'   %\VignetteIndexEntry{Tests for the univ() function - Exponential Distribution}
 #'   %\VignetteEngine{knitr::rmarkdown}
 #'   %\VignetteEncoding{UTF-8}
 #' ---
@@ -23,7 +27,7 @@ library(MASS)
 library(jeksterslabRdata)
 context("Test univ Exponential Distribution.")
 #'
-#+ plot-arguments
+#+ plot-arguments, echo = FALSE
 par(pty = "s")
 breaks <- 100
 #'
@@ -33,7 +37,7 @@ breaks <- 100
 #'
 #+ sizes, echo = FALSE
 n <- 1000
-R <- 10000
+R <- 1000
 Variable <- c(
   "`n`",
   "`R`"

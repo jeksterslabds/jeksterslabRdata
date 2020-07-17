@@ -1,0 +1,73 @@
+---
+title: "Examples for the mvn() function"
+author: "Ivan Jacob Agaloos Pesigan"
+date: "`r Sys.Date()`"
+description: >
+  Examples for the mvn() function.
+output:
+  rmarkdown::html_vignette:
+    toc: true
+vignette: >
+  %\VignetteIndexEntry{Examples for the mvn() function}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r}
+library(jeksterslabRdata)
+```
+
+## Documentation
+
+See `mvn()` for more details.
+
+## Examples
+
+### Single Random Data Set
+
+Set `mu` and `Sigma`.
+
+```{r}
+mu <- c(100, 100, 100)
+Sigma <- matrix(
+  data = c(225, 112.50, 56.25, 112.5, 225, 112.5, 56.25, 112.50, 225),
+  ncol = 3
+)
+```
+
+Run the function.
+
+```{r}
+X <- mvn(n = 100, mu = mu, Sigma = Sigma)
+```
+
+Explore the output.
+
+```{r}
+str(X)
+psych::pairs.panels(X)
+colMeans(X)
+cov(X)
+cor(X)
+```
+
+### Multiple Random Data Sets
+
+Run the function.
+
+```{r}
+Xstar <- mvn(n = 100, mu = mu, Sigma = Sigma, R = 1000)
+```
+
+Explore the output.
+
+```{r}
+str(Xstar, list.len = 6)
+```

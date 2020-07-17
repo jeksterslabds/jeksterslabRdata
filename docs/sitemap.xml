@@ -19,10 +19,22 @@
     <loc>https://github.com/jeksterslabds/jeksterslabRdata//reference/univ.html</loc>
   </url>
   <url>
-    <loc>https://github.com/jeksterslabds/jeksterslabRdata//articles/jeksterslabRdata.html</loc>
+    <loc>https://github.com/jeksterslabds/jeksterslabRdata//articles/examples/examples_fit.html</loc>
   </url>
   <url>
-    <loc>https://github.com/jeksterslabds/jeksterslabRdata//articles/tests/test_2_plus_2.html</loc>
+    <loc>https://github.com/jeksterslabds/jeksterslabRdata//articles/examples/examples_mvn.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/jeksterslabds/jeksterslabRdata//articles/examples/examples_mvnram.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/jeksterslabds/jeksterslabRdata//articles/examples/examples_mvnramsigma2.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/jeksterslabds/jeksterslabRdata//articles/examples/examples_univ.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/jeksterslabds/jeksterslabRdata//articles/jeksterslabRdata.html</loc>
   </url>
   <url>
     <loc>https://github.com/jeksterslabds/jeksterslabRdata//articles/tests/test_univ_exp.html</loc>

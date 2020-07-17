@@ -1,0 +1,168 @@
+---
+title: "Examples for the mvnram() function"
+author: "Ivan Jacob Agaloos Pesigan"
+date: "`r Sys.Date()`"
+description: >
+  Examples for the mvnram() function.
+output:
+  rmarkdown::html_vignette:
+    toc: true
+vignette: >
+  %\VignetteIndexEntry{Examples for the mvnram() function}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r}
+library(jeksterslabRdata)
+```
+
+## Documentation
+
+See `mvnram()` for more details.
+
+## Examples
+
+### Specify `mu`
+
+#### Single Random Data Set
+
+Set matrices.
+
+```{r}
+mu <- c(100, 100, 100)
+A <- matrix(
+  data = c(0, sqrt(0.26), 0, 0, 0, sqrt(0.26), 0, 0, 0),
+  ncol = 3
+)
+S <- diag(c(225, 166.5, 116.5))
+F <- I <- diag(3)
+```
+
+Run the function.
+
+```{r}
+X <- mvnram(n = 100, mu = mu, A = A, S = S, F = F, I = I)
+```
+
+Explore the output.
+
+```{r}
+str(X)
+psych::pairs.panels(X)
+colMeans(X)
+cov(X)
+cor(X)
+```
+
+### Multiple Random Data Sets
+
+Run the function.
+
+```{r}
+Xstar <- mvnram(n = 100, mu = mu, A = A, S = S, F = F, I = I, R = 100)
+```
+
+Explore the output.
+
+```{r}
+str(Xstar, list.len = 6)
+```
+
+### Specify `M`
+
+#### Single Random Data Set
+
+Set matrices.
+
+```{r}
+M <- c(100, 50, 50)
+A <- matrix(
+  data = c(0, sqrt(0.26), 0, 0, 0, sqrt(0.26), 0, 0, 0),
+  ncol = 3
+)
+S <- diag(c(225, 166.5, 116.5))
+F <- I <- diag(3)
+```
+
+Run the function.
+
+```{r}
+X <- mvnram(n = 100, M = M, A = A, S = S, F = F, I = I)
+```
+
+Explore the output.
+
+```{r}
+str(X)
+psych::pairs.panels(X)
+colMeans(X)
+cov(X)
+cor(X)
+```
+
+### Multiple Random Data Sets
+
+Run the function.
+
+```{r}
+Xstar <- mvnram(n = 100, M = M, A = A, S = S, F = F, I = I, R = 100)
+```
+
+Explore the output.
+
+```{r}
+str(Xstar, list.len = 6)
+```
+
+### Specify `mu = NULL` and `M = NULL`
+
+#### Single Random Data Set
+
+Set matrices.
+
+```{r}
+A <- matrix(
+  data = c(0, sqrt(0.26), 0, 0, 0, sqrt(0.26), 0, 0, 0),
+  ncol = 3
+)
+S <- diag(c(225, 166.5, 116.5))
+F <- I <- diag(3)
+```
+
+Run the function.
+
+```{r}
+X <- mvnram(n = 100, A = A, S = S, F = F, I = I)
+```
+
+Explore the output.
+
+```{r}
+str(X)
+psych::pairs.panels(X)
+colMeans(X)
+cov(X)
+cor(X)
+```
+
+### Multiple Random Data Sets
+
+Run the function.
+
+```{r}
+Xstar <- mvnram(n = 100, A = A, S = S, F = F, I = I, R = 100)
+```
+
+Explore the output.
+
+```{r}
+str(Xstar, list.len = 6)
+```

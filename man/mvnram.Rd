@@ -4,27 +4,24 @@
 \alias{mvnram}
 \title{Generate Multivariate Normal Data
 \eqn{
-  \mathbf{X}
-  \sim
-  \mathcal{N}_{k}
-  \left(
-    \boldsymbol{\mu},
-    \boldsymbol{\Sigma}
-  \right)
-  %(\#eq:dist-X-mvn)
-}
-from the Reticular Action Model (RAM) Matrices}
+    \mathbf{X} \sim \mathcal{N}_{k}
+    \left( \boldsymbol{\mu}, \boldsymbol{\Sigma} \right)
+    %(\#eq:dist-X-mvn)
+  }
+from the Reticular Action Model Matrices}
 \usage{
 mvnram(
   n,
+  mu = NULL,
+  M = NULL,
   A,
   S,
   F,
   I,
-  M = NULL,
-  mu = NULL,
   tol = 1e-06,
   empirical = FALSE,
+  df = FALSE,
+  varnames = NULL,
   R = NULL,
   par = FALSE,
   ncores = NULL,
@@ -39,6 +36,13 @@ mvnram(
 \arguments{
 \item{n}{Integer.
 Sample size.}
+
+\item{mu}{Numeric vector.
+Location parameter mean vector \eqn{\boldsymbol{\mu}} of length \eqn{k}.}
+
+\item{M}{Numeric vector.
+Mean structure.
+Vector of means and intercepts.}
 
 \item{A}{\eqn{\mathbf{A}} matrix.
 Asymmetric paths (single-headed arrows),
@@ -55,32 +59,28 @@ used to select the observed variables.}
 \item{I}{\eqn{\mathbf{I}} matrix.
 Identity matrix.}
 
-\item{M}{Numeric vector.
-Mean structure.
-Vector of means and intercepts.}
-
-\item{mu}{Numeric vector.
-Location parameter mean vector \eqn{\boldsymbol{\mu}} of length \eqn{k}.}
-
 \item{tol}{Numeric.
 Tolerance (relative to largest variance)
 for numerical lack of positive-definiteness in \code{Sigma}.}
 
 \item{empirical}{Logical.
-If \code{TRUE}, \code{mu} and \code{Sigma} specify the empirical
-not population mean and covariance matrix.}
+If \code{TRUE}, \code{mu} and \code{Sigma} specify the empirical,
+not population. mean and covariance matrix.}
+
+\item{df}{Logical.
+If \code{TRUE}, the function returns a data frame.
+If \code{FALSE}, the function returns a matrix.}
+
+\item{varnames}{Character string.
+Optional column names with the same length as \code{mu}.}
 
 \item{R}{Integer.
-Number of Monte Carlo replications.
-If \code{R} is not provided,
+Number of Monte Carlo replications. If \code{R} is not provided,
 the function produces a single random data set.
-If \code{R} is an integer greater than 1,
-(e.g., \code{R = 10}),
-the function produces
-multiple random data sets
+If \code{R} is an integer greater than 1, (e.g., \code{R = 10}),
+the function produces multiple random data sets
 stored in each element of a list of length \code{R}.
-\code{par} and all succeeding arguments are only relevant
-when \code{R > 1}.}
+\code{par} and all succeeding arguments are only relevant when \code{R > 1}.}
 
 \item{par}{Logical.
 If \code{TRUE}, use multiple cores.
@@ -117,110 +117,57 @@ Names of objects to pass to \code{\link[parallel:clusterApply]{parallel::cluster
 Ignored if \code{mc = TRUE}.}
 }
 \value{
-If \code{R = NULL} or \code{R = 1},
-returns an \eqn{n \times k} multivariate normal data matrix generated
-using the provided or derived mean vector \code{mu}
-\eqn{\left( \boldsymbol{\mu} \right)}
-and the derived variance-covariance matrix \code{Sigma}
-\eqn{\left( \boldsymbol{\Sigma} \right)}.
-If \code{R} is an integer greater than 1,
-(e.g., \code{R = 10})
-returns a list of length \code{R} of
-\eqn{n \times k} multivariate normal data matrices generated
-using the provided or derived mean vector \code{mu}
-and the derived variance-covariance matrix \code{Sigma}.
+If \code{R = NULL} or \code{R = 1}, returns an \eqn{n \times k}
+multivariate normal data matrix or data frame .
+If \code{R} is an integer greater than 1, (e.g., \code{R = 10})
+returns a list of length \code{R} of \eqn{n \times k}
+multivariate normal data matrix or data frame.
 }
 \description{
 Generates an \eqn{n \times k} multivariate data matrix
 or a list of \eqn{n \times k} multivariate data matrices of length \code{R}
 from the multivariate normal distribution
 \deqn{
-  \mathbf{X}
-  \sim
-  \mathcal{N}_{k}
-  \left(
-    \boldsymbol{\mu},
-    \boldsymbol{\Sigma}
-  \right)
-  %(\#eq:dist-X-mvn)
-}
+    \mathbf{X} \sim \mathcal{N}_{k}
+    \left( \boldsymbol{\mu}, \boldsymbol{\Sigma} \right) .
+    %(\#eq:dist-X-mvn)
+  }
 The model-implied matrices used to generate data
 is derived from the Reticular Action Model (RAM) Matrices.
 }
 \details{
 The multivariate normal distribution has two parameters,
-namely the
-\eqn{k \times 1} mean vector
+namely the \eqn{k \times 1} mean vector
 \code{mu} \eqn{\left( \boldsymbol{\mu} \right)}
-and the
-\eqn{k \times k} variance-covariance matrix
+and the \eqn{k \times k} variance-covariance matrix
 \code{Sigma} \eqn{\left( \boldsymbol{\Sigma} \right)}.
 
-The mean vector \code{mu}
-\eqn{\left( \boldsymbol{\mu} \right)}
-can be supplied directly
-using the \code{mu} argument.
-It can also be derived
-using \code{M}.
-Note that the argument \code{mu}
-\eqn{\left( \boldsymbol{\mu} \right)}
-takes precedence over \code{M}
-If \code{mu} is not provided,
-it is computed using \code{M}
+The mean vector \code{mu} can be supplied directly using the \code{mu} argument.
+It can also be derived using \code{M}.
+Note that the argument \code{mu} takes precedence over \code{M}.
+If \code{mu} is not provided, it is computed using \code{M}
 with the \code{\link[jeksterslabRsem:ram_mutheta]{jeksterslabRsem::ram_mutheta()}} function.
-If both \code{mu} and \code{M}
-are not provided,
+If both \code{mu} and \code{M} are not provided,
 \code{mu} is set to a vector of zeroes with the appropriate length.
 
-The variance-covariance matrix \code{Sigma}
-\eqn{\left(\boldsymbol{\Sigma}\right)}
-is derived
+The variance-covariance matrix \code{Sigma} is derived
 from the RAM matrices \code{A}, \code{S}, \code{F}, and \code{I}.
 
-\code{mu} \eqn{\left( \boldsymbol{\mu} \right)}
-and \code{Sigma} \eqn{\left(\boldsymbol{\Sigma}\right)}
-are then used by the \code{\link[=mvn]{mvn()}}
+\code{mu} and \code{Sigma} are then used by the \code{\link[=mvn]{mvn()}} function
 to generate multivariate normal data.
 
-Options for explicit parallelism are provided
-when \code{R > 1} especially when \code{R} is large.
-See \code{par} and suceeding arguments.
+Options for explicit parallelism are provided when \code{R > 1}
+especially when \code{R} is large. See \code{par} and suceeding arguments.
 }
 \examples{
+mu <- c(100, 100, 100)
 A <- matrix(
-  data = c(
-    0, 0.26^(1 / 2), 0,
-    0, 0, 0.26^(1 / 2),
-    0, 0, 0
-  ),
+  data = c(0, sqrt(0.26), 0, 0, 0, sqrt(0.26), 0, 0, 0),
   ncol = 3
 )
-S <- F <- I <- diag(3)
-S[1, 1] <- 225
-S[2, 2] <- 166.5
-S[3, 3] <- 166.5
-mu <- c(100, 100, 100)
-# single random data set------------------------------------------------------
-X <- mvnram(
-  n = 100,
-  A = A,
-  S = S,
-  F = F,
-  I = I,
-  mu = mu
-)
-str(X, list.len = 6)
-# multiple random data sets---------------------------------------------------
-X <- mvnram(
-  n = 100,
-  A = A,
-  S = S,
-  F = F,
-  I = I,
-  mu = mu,
-  R = 10
-)
-str(X, list.len = 6)
+S <- diag(c(225, 166.5, 116.5))
+F <- I <- diag(3)
+X <- mvnram(n = 100, mu = mu, A = A, S = S, F = F, I = I)
 }
 \references{
 McArdle, J. J. (2013).

@@ -24,6 +24,7 @@
 vignettes/*.html
 vignettes/*.pdf
 vignettes/*.md
+vignettes/jeksterslabRdata_files
 vignettes/articles/*.html
 vignettes/articles/*.pdf
 vignettes/articles/*.md

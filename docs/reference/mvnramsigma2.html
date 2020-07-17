@@ -8,16 +8,13 @@
 
 <title>Generate Multivariate Normal Data
 \(
-  \mathbf{X}
-  \sim
-  \mathcal{N}_{k}
-  \left(
-    \boldsymbol{\mu},
-    \boldsymbol{\Sigma}
-  \right)
-  %(\#eq:dist-X-mvn)
-\)
-from the Reticular Action Model (RAM) Matrices. — mvnramsigma2 • jeksterslabRdata</title>
+    \mathbf{X} \sim \mathcal{N}_{k}
+    \left( \boldsymbol{\mu}, \boldsymbol{\Sigma} \right)
+    %(\#eq:dist-X-mvn)
+  \)
+from the Reticular Action Model  Matrices
+\(\mathrm{A}\), \(\mathrm{F}\), \(\mathrm{I}\),
+and the vector of variable variances \(\sigma^2\) — mvnramsigma2 • jeksterslabRdata</title>
 
 
 <!-- jquery -->
@@ -52,18 +49,23 @@ from the Reticular Action Model (RAM) Matrices. — mvnramsigma2 • jeksterslab
 
 <meta property="og:title" content="Generate Multivariate Normal Data
 \(
-  \mathbf{X}
-  \sim
-  \mathcal{N}_{k}
-  \left(
-    \boldsymbol{\mu},
-    \boldsymbol{\Sigma}
-  \right)
-  %(\#eq:dist-X-mvn)
-\)
-from the Reticular Action Model (RAM) Matrices. — mvnramsigma2" />
-<meta property="og:description" content="The \(\mathbf{S}\) matrix
-is derived from a vector of variances." />
+    \mathbf{X} \sim \mathcal{N}_{k}
+    \left( \boldsymbol{\mu}, \boldsymbol{\Sigma} \right)
+    %(\#eq:dist-X-mvn)
+  \)
+from the Reticular Action Model  Matrices
+\(\mathrm{A}\), \(\mathrm{F}\), \(\mathrm{I}\),
+and the vector of variable variances \(\sigma^2\) — mvnramsigma2" />
+<meta property="og:description" content="Generates an \(n \times k\) multivariate data matrix
+or a list of \(n \times k\) multivariate data matrices of length R
+from the multivariate normal distribution
+$$
+    \mathbf{X} \sim \mathcal{N}_{k}
+    \left( \boldsymbol{\mu}, \boldsymbol{\Sigma} \right) .
+    %(\#eq:dist-X-mvn)
+  $$
+The model-implied matrices used to generate data
+is derived from the Reticular Action Model (RAM) Matrices." />
 
 
 
@@ -121,13 +123,25 @@ is derived from a vector of variances." />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/tests/test_2_plus_2.html">Test: test_2_plus_2</a>
+      <a href="../articles/examples/examples_fit.html">Examples for the fit() function</a>
     </li>
     <li>
-      <a href="../articles/tests/test_univ_exp.html">Test: Univariate Data Generation - Exponential Distribution</a>
+      <a href="../articles/examples/examples_mvn.html">Examples for the mvn() function</a>
     </li>
     <li>
-      <a href="../articles/tests/test_univ_norm.html">Test: Univariate Data Generation - Normal Distribution</a>
+      <a href="../articles/examples/examples_mvnram.html">Examples for the mvnram() function</a>
+    </li>
+    <li>
+      <a href="../articles/examples/examples_mvnramsigma2.html">Examples for the mvnramsigma2() function</a>
+    </li>
+    <li>
+      <a href="../articles/examples/examples_univ.html">Examples for the univ() function</a>
+    </li>
+    <li>
+      <a href="../articles/tests/test_univ_exp.html">Tests for the univ() function - Exponential Distribution</a>
+    </li>
+    <li>
+      <a href="../articles/tests/test_univ_norm.html">Tests for the univ() function - Normal Distribution</a>
     </li>
   </ul>
 </li>
@@ -157,35 +171,42 @@ is derived from a vector of variances." />
     <div class="page-header">
     <h1>Generate Multivariate Normal Data
 \(
-  \mathbf{X}
-  \sim
-  \mathcal{N}_{k}
-  \left(
-    \boldsymbol{\mu},
-    \boldsymbol{\Sigma}
-  \right)
-  %(\#eq:dist-X-mvn)
-\)
-from the Reticular Action Model (RAM) Matrices.</h1>
+    \mathbf{X} \sim \mathcal{N}_{k}
+    \left( \boldsymbol{\mu}, \boldsymbol{\Sigma} \right)
+    %(\#eq:dist-X-mvn)
+  \)
+from the Reticular Action Model  Matrices
+\(\mathrm{A}\), \(\mathrm{F}\), \(\mathrm{I}\),
+and the vector of variable variances \(\sigma^2\)</h1>
     <small class="dont-index">Source: <a href='https://github.com/jeksterslabds/jeksterslabRdata/blob/master/R/mvn.R'><code>R/mvn.R</code></a></small>
     <div class="hidden name"><code>mvnramsigma2.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>The \(\mathbf{S}\) matrix
-is derived from a vector of variances.</p>
+    <p>Generates an \(n \times k\) multivariate data matrix
+or a list of \(n \times k\) multivariate data matrices of length <code>R</code>
+from the multivariate normal distribution
+$$
+    \mathbf{X} \sim \mathcal{N}_{k}
+    \left( \boldsymbol{\mu}, \boldsymbol{\Sigma} \right) .
+    %(\#eq:dist-X-mvn)
+  $$
+The model-implied matrices used to generate data
+is derived from the Reticular Action Model (RAM) Matrices.</p>
     </div>
 
     <pre class="usage"><span class='fu'>mvnramsigma2</span>(
   <span class='no'>n</span>,
+  <span class='kw'>mu</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>M</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='no'>A</span>,
   <span class='no'>sigma2</span>,
   <span class='no'>F</span>,
   <span class='no'>I</span>,
-  <span class='kw'>M</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>mu</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>tol</span> <span class='kw'>=</span> <span class='fl'>1e-06</span>,
   <span class='kw'>empirical</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>df</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>varnames</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>R</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>par</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>ncores</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
@@ -204,6 +225,17 @@ is derived from a vector of variances.</p>
       <th>n</th>
       <td><p>Integer.
 Sample size.</p></td>
+    </tr>
+    <tr>
+      <th>mu</th>
+      <td><p>Numeric vector.
+Location parameter mean vector \(\boldsymbol{\mu}\) of length \(k\).</p></td>
+    </tr>
+    <tr>
+      <th>M</th>
+      <td><p>Numeric vector.
+Mean structure.
+Vector of means and intercepts.</p></td>
     </tr>
     <tr>
       <th>A</th>
@@ -229,17 +261,6 @@ used to select the observed variables.</p></td>
 Identity matrix.</p></td>
     </tr>
     <tr>
-      <th>M</th>
-      <td><p>Numeric vector.
-Mean structure.
-Vector of means and intercepts.</p></td>
-    </tr>
-    <tr>
-      <th>mu</th>
-      <td><p>Numeric vector.
-Location parameter mean vector \(\boldsymbol{\mu}\) of length \(k\).</p></td>
-    </tr>
-    <tr>
       <th>tol</th>
       <td><p>Numeric.
 Tolerance (relative to largest variance)
@@ -248,22 +269,29 @@ for numerical lack of positive-definiteness in <code>Sigma</code>.</p></td>
     <tr>
       <th>empirical</th>
       <td><p>Logical.
-If <code>TRUE</code>, <code>mu</code> and <code>Sigma</code> specify the empirical
-not population mean and covariance matrix.</p></td>
+If <code>TRUE</code>, <code>mu</code> and <code>Sigma</code> specify the empirical,
+not population. mean and covariance matrix.</p></td>
+    </tr>
+    <tr>
+      <th>df</th>
+      <td><p>Logical.
+If <code>TRUE</code>, the function returns a data frame.
+If <code>FALSE</code>, the function returns a matrix.</p></td>
+    </tr>
+    <tr>
+      <th>varnames</th>
+      <td><p>Character string.
+Optional column names with the same length as <code>mu</code>.</p></td>
     </tr>
     <tr>
       <th>R</th>
       <td><p>Integer.
-Number of Monte Carlo replications.
-If <code>R</code> is not provided,
+Number of Monte Carlo replications. If <code>R</code> is not provided,
 the function produces a single random data set.
-If <code>R</code> is an integer greater than 1,
-(e.g., <code>R = 10</code>),
-the function produces
-multiple random data sets
+If <code>R</code> is an integer greater than 1, (e.g., <code>R = 10</code>),
+the function produces multiple random data sets
 stored in each element of a list of length <code>R</code>.
-<code>par</code> and all succeeding arguments are only relevant
-when <code>R &gt; 1</code>.</p></td>
+<code>par</code> and all succeeding arguments are only relevant when <code>R &gt; 1</code>.</p></td>
     </tr>
     <tr>
       <th>par</th>
@@ -319,18 +347,17 @@ Ignored if <code>mc = TRUE</code>.</p></td>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>If <code>R = NULL</code> or <code>R = 1</code>,
-returns an \(n \times k\) multivariate normal data matrix generated
-using the provided or derived mean vector <code>mu</code>
-\(\left( \boldsymbol{\mu} \right)\)
-and the derived variance-covariance matrix <code>Sigma</code>
-\(\left( \boldsymbol{\Sigma} \right)\).
-If <code>R</code> is an integer greater than 1,
-(e.g., <code>R = 10</code>)
-returns a list of length <code>R</code> of
-\(n \times k\) multivariate normal data matrices generated
-using the provided or derived mean vector <code>mu</code>
-and the derived variance-covariance matrix <code>Sigma</code>.</p>
+    <p>If <code>R = NULL</code> or <code>R = 1</code>, returns an \(n \times k\)
+multivariate normal data matrix or data frame .
+If <code>R</code> is an integer greater than 1, (e.g., <code>R = 10</code>)
+returns a list of length <code>R</code> of \(n \times k\)
+multivariate normal data matrix or data frame.</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>The \(\mathbf{S}\) matrix is derived
+from a vector of variances sigma2 \(\left( \sigma^2 \right)\)
+and the proceeds to generating data using the <code><a href='mvnram.html'>mvnram()</a></code> function.
+<strong>The first element in sigma2 should be the variance of an exogenous variable.</strong></p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Other multivariate data functions: 
@@ -338,33 +365,15 @@ and the derived variance-covariance matrix <code>Sigma</code>.</p>
 <code><a href='mvn.html'>mvn</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># One-factor CFA model--------------------------------------------------------</span>
-<span class='no'>A</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>6</span>, <span class='kw'>nrow</span> <span class='kw'>=</span> <span class='fl'>6</span>)
-<span class='kw'>for</span> (<span class='no'>i</span> <span class='kw'>in</span> <span class='fl'>2</span>:<span class='fl'>6</span>) {
-  <span class='no'>A</span>[<span class='no'>i</span>, <span class='fl'>1</span>] <span class='kw'>&lt;-</span> <span class='fl'>0.5</span>
-}
-<span class='no'>sigma2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>1</span>, <span class='fl'>1</span>, <span class='fl'>1</span>, <span class='fl'>1</span>, <span class='fl'>1</span>)
-<span class='no'>F</span> <span class='kw'>&lt;-</span> <span class='no'>I</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/diag.html'>diag</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span>(<span class='no'>A</span>))
-<span class='no'>F</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/diag.html'>diag</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span>(<span class='no'>A</span>) - <span class='fl'>1</span>)
-<span class='no'>F</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>cbind</a></span>(<span class='fl'>0</span>, <span class='no'>F</span>)
-<span class='no'>X</span> <span class='kw'>&lt;-</span> <span class='fu'>mvnramsigma2</span>(
-  <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>100</span>,
-  <span class='kw'>A</span> <span class='kw'>=</span> <span class='no'>A</span>,
-  <span class='kw'>sigma2</span> <span class='kw'>=</span> <span class='no'>sigma2</span>,
-  <span class='kw'>F</span> <span class='kw'>=</span> <span class='no'>F</span>,
-  <span class='kw'>I</span> <span class='kw'>=</span> <span class='no'>I</span>,
-  <span class='kw'>empirical</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
-)</div><div class='output co'>#&gt; <span class='message'>mu = NULL and M = NULL. mu is set to a vector of zeroes of length 5.</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span>(<span class='no'>X</span>, <span class='kw'>list.len</span> <span class='kw'>=</span> <span class='fl'>6</span>)</div><div class='output co'>#&gt; 'data.frame':	100 obs. of  5 variables:
-#&gt;  $ V1: num  -0.1912 0.0694 1.5068 0.1594 0.887 ...
-#&gt;  $ V2: num  0.293 1.637 1.693 0.292 -0.323 ...
-#&gt;  $ V3: num  -0.046 -1.396 1.249 0.118 -0.747 ...
-#&gt;  $ V4: num  2.3601 -0.0078 -0.089 -0.2348 0.8273 ...
-#&gt;  $ V5: num  -0.414 0.953 1.095 0.269 0.316 ...</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>cov</a></span>(<span class='no'>X</span>)</div><div class='output co'>#&gt;      V1   V2   V3   V4   V5
-#&gt; V1 1.00 0.25 0.25 0.25 0.25
-#&gt; V2 0.25 1.00 0.25 0.25 0.25
-#&gt; V3 0.25 0.25 1.00 0.25 0.25
-#&gt; V4 0.25 0.25 0.25 1.00 0.25
-#&gt; V5 0.25 0.25 0.25 0.25 1.00</div></pre>
+    <pre class="examples"><div class='input'><span class='no'>mu</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>100</span>, <span class='fl'>100</span>, <span class='fl'>100</span>)
+<span class='no'>A</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>(
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>, <span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>sqrt</a></span>(<span class='fl'>0.26</span>), <span class='fl'>0</span>, <span class='fl'>0</span>, <span class='fl'>0</span>, <span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>sqrt</a></span>(<span class='fl'>0.26</span>), <span class='fl'>0</span>, <span class='fl'>0</span>, <span class='fl'>0</span>),
+  <span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>3</span>
+)
+<span class='no'>sigma2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>225</span>, <span class='fl'>225</span>, <span class='fl'>225</span>)
+<span class='no'>F</span> <span class='kw'>&lt;-</span> <span class='no'>I</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/diag.html'>diag</a></span>(<span class='fl'>3</span>)
+<span class='no'>X</span> <span class='kw'>&lt;-</span> <span class='fu'>mvnramsigma2</span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>mu</span> <span class='kw'>=</span> <span class='no'>mu</span>, <span class='kw'>A</span> <span class='kw'>=</span> <span class='no'>A</span>, <span class='kw'>sigma2</span> <span class='kw'>=</span> <span class='no'>sigma2</span>, <span class='kw'>F</span> <span class='kw'>=</span> <span class='no'>F</span>, <span class='kw'>I</span> <span class='kw'>=</span> <span class='no'>I</span>)
+<span class='no'>Xstar</span> <span class='kw'>&lt;-</span> <span class='fu'>mvnramsigma2</span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>mu</span> <span class='kw'>=</span> <span class='no'>mu</span>, <span class='kw'>A</span> <span class='kw'>=</span> <span class='no'>A</span>, <span class='kw'>sigma2</span> <span class='kw'>=</span> <span class='no'>sigma2</span>, <span class='kw'>F</span> <span class='kw'>=</span> <span class='no'>F</span>, <span class='kw'>I</span> <span class='kw'>=</span> <span class='no'>I</span>, <span class='kw'>R</span> <span class='kw'>=</span> <span class='fl'>100</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

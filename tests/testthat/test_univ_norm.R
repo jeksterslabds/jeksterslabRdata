@@ -1,10 +1,14 @@
 #' ---
-#' title: "Test: Univariate Data Generation - Normal Distribution"
+#' title: "Tests for the univ() function - Normal Distribution"
 #' author: "Ivan Jacob Agaloos Pesigan"
 #' date: "`r Sys.Date()`"
-#' resultput: rmarkdown::html_vignette
+#' description: >
+#'   Tests for the univ() function - Normal Distribution.
+#' output:
+#'   rmarkdown::html_vignette:
+#'     toc: true
 #' vignette: >
-#'   %\VignetteIndexEntry{Test: Univariate Data Generation - Normal Distribution}
+#'   %\VignetteIndexEntry{Tests for the univ() function - Normal Distribution}
 #'   %\VignetteEngine{knitr::rmarkdown}
 #'   %\VignetteEncoding{UTF-8}
 #' ---
@@ -17,7 +21,7 @@ knitr::opts_chunk$set(
   result.width = "100%"
 )
 #'
-#+ plot-arguments
+#+ plot-arguments, echo = FALSE
 par(pty = "s")
 breaks <- 100
 #'
@@ -32,7 +36,7 @@ context("Test univ Normal Distribution.")
 #'
 #+ sizes, echo = FALSE
 n <- 1000
-R <- 10000
+R <- 1000
 Variable <- c(
   "`n`",
   "`R`"
@@ -158,17 +162,6 @@ x <- univ(
   rFUN = rnorm,
   mean = mu,
   sd = sigma
-)
-# same result
-str(
-  univ(
-    n = n,
-    rFUN = rnorm,
-    R = 1,
-    mean = mu,
-    sd = sigma
-  ),
-  list.len = 6
 )
 hist(
   x,
@@ -432,5 +425,59 @@ test_that("expected values (means) of muhat, sigma2hat, sigmahat", {
       sigma2,
       sigma
     )
+  )
+})
+#'
+#+ Other Test, echo = FALSE
+set.seed(42)
+x <- univ(
+  n = n,
+  rFUN = rnorm,
+  mean = mu,
+  sd = sigma
+)
+set.seed(42)
+y <- univ(
+  n = n,
+  rFUN = rnorm,
+  R = 1,
+  mean = mu,
+  sd = sigma
+)
+test_that("R = NULL equal to R = 1", {
+  expect_equivalent(
+    x,
+    y
+  )
+})
+set.seed(42)
+x <- univ(
+  n = n,
+  rFUN = rnorm,
+  mean = mu,
+  sd = sigma,
+  rbind = NULL
+)
+set.seed(42)
+y <- univ(
+  n = n,
+  rFUN = rnorm,
+  mean = mu,
+  sd = sigma,
+  rbind = TRUE
+)
+set.seed(42)
+z <- univ(
+  n = n,
+  rFUN = rnorm,
+  mean = mu,
+  sd = sigma,
+  rbind = FALSE
+)
+test_that("rbind = NULL, rbind = TRUE, rbind = FALSE", {
+  expect_equivalent(
+    x,
+    y,
+    t(z)
   )
 })

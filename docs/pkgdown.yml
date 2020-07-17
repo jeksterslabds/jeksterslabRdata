@@ -2,11 +2,15 @@ pandoc: 2.9.2.1
 pkgdown: 1.5.1
 pkgdown_sha: ~
 articles:
+  examples_fit: examples/examples_fit.html
+  examples_mvn: examples/examples_mvn.html
+  examples_mvnram: examples/examples_mvnram.html
+  examples_mvnramsigma2: examples/examples_mvnramsigma2.html
+  examples_univ: examples/examples_univ.html
   jeksterslabRdata: jeksterslabRdata.html
-  test_2_plus_2: tests/test_2_plus_2.html
   test_univ_exp: tests/test_univ_exp.html
   test_univ_norm: tests/test_univ_norm.html
-last_built: 2020-07-16T08:19Z
+last_built: 2020-07-17T06:00Z
 urls:
   reference: https://github.com/jeksterslabds/jeksterslabRdata//reference
   article: https://github.com/jeksterslabds/jeksterslabRdata//articles

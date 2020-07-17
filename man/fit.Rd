@@ -2,7 +2,7 @@
 % Please edit documentation in R/fit.R
 \name{fit}
 \alias{fit}
-\title{Fit}
+\title{Fit a Function to Each Element of a List of Data}
 \usage{
 fit(
   Xstar,
@@ -21,8 +21,7 @@ fit(
 }
 \arguments{
 \item{Xstar}{List.
-A list of length \code{R} with a data set of length \code{n}
-in each element of the list.}
+A list of length \code{R} with a data set of length \code{n} in each element of the list.}
 
 \item{fitFUN}{Function.
 Fit function to be applied to each element of \code{Xstar}.}
@@ -78,43 +77,30 @@ before using this option.}
 Returns a list of parameter estimates.
 }
 \description{
-Fit a function to each element
-of a list of data.
+Fits a function to each element of a list of data.
 }
 \details{
-The first argument of \code{fitFUN} should be \code{data}.
+The first argument of \code{fitFUN} should be \code{data}
 The output of \code{fitFUN} should be a vector.
 
 Options for explicit parallelism are provided.
 See \code{par} and suceeding arguments.
 }
 \examples{
-n <- 4
-R <- 1000
-# normal distribution---------------------------------------------------------
-mu <- 100
-sigma2 <- 225
-sigma <- sqrt(sigma2)
-xstar <- univ(
-  n = n,
-  rFUN = rnorm,
-  R = R,
-  mean = mu,
-  sd = sigma
+xstar <- univ(n = 100, rFUN = rnorm, mean = 100, sd = sqrt(225), R = 100)
+thetahatstar <- fit(Xstar = xstar, fitFUN = mean, rbind = TRUE)
+mean(thetahatstar)
+Xstar <- mvn(
+  n = 100,
+  Sigma = matrix(c(1, .5, .5, 1), nrow = 2),
+  R = 100
 )
-str(xstar, list.len = 6)
-# fit the var function--------------------------------------------------------
-thetahatstar <- fit(
-  Xstar = xstar,
-  fitFUN = var,
-  rbind = TRUE,
-  par = FALSE
-)
-str(thetahatstar)
-# The sampling distribution of sample variances
-# follows a chi-square distribution with df = n - 1
-# when the population is normally distributed
-hist(thetahatstar)
+foo <- function(X) {
+  as.vector(cov(X))
+}
+thetahatstar <- fit(Xstar = Xstar, fitFUN = foo, rbind = TRUE)
+thetahatstar <- thetahatstar[, 2]
+mean(thetahatstar)
 }
 \author{
 Ivan Jacob Agaloos Pesigan

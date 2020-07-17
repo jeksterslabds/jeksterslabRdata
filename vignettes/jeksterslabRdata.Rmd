@@ -31,7 +31,164 @@ library(devtools)
 install_github("jeksterslabds/jeksterslabRdata")
 ```
 
-## Example
+## Main functions
 
-See [GitHub Pages](https://jeksterslabds.github.io/jeksterslabRdata/index.html)
-for package documentation.
+```{r}
+library(jeksterslabRdata)
+```
+
+### `univ()`
+
+Generates an $n \times 1$ univariate data vector
+or a list of $n \times 1$ univariate data vectors of length `R`.
+The default data generating function
+is the normal distribution
+
+\begin{equation}
+  X \sim \mathcal{N} \left( \mu, \sigma^2 \right) .
+  %(\#eq:dist-X-norm)
+\end{equation}
+
+#### Single Random Data Set
+
+Run the function.
+
+```{r}
+x <- univ(n = 100, rFUN = rnorm, mean = 100, sd = sqrt(225))
+```
+
+Explore the output.
+
+```{r}
+str(x, list.len = 6)
+hist(x, main = expression(italic(N)(list(mu == 100, sigma^2 == 225))))
+```
+
+#### Multiple Random Data Sets
+
+Run the function.
+
+```{r}
+xstar <- univ(n = 100, rFUN = rnorm, mean = 100, sd = sqrt(225), R = 100)
+```
+
+Explore the output.
+
+```{r}
+str(xstar, list.len = 6)
+```
+
+### `mvn()`
+
+Generates an $n \times k$ multivariate data matrix
+or a list of $n \times k$ multivariate data matrices of length `R`
+from the multivariate normal distribution
+
+\begin{equation}
+  \mathbf{X} \sim \mathcal{N}_{k}
+  \left( \boldsymbol{\mu}, \boldsymbol{\Sigma} \right) .
+  %(\#eq:dist-X-mvn)
+\end{equation}
+
+\noindent This function is a wrapper around `MASS::mvrnorm()`.
+
+#### Single Random Data Set
+
+Set `mu` and `Sigma`.
+
+```{r}
+mu <- c(100, 100, 100)
+Sigma <- matrix(
+  data = c(225, 112.50, 56.25, 112.5, 225, 112.5, 56.25, 112.50, 225),
+  ncol = 3
+)
+```
+
+Run the function.
+
+```{r}
+X <- mvn(n = 100, mu = mu, Sigma = Sigma)
+```
+
+Explore the output.
+
+```{r}
+str(X)
+psych::pairs.panels(X)
+colMeans(X)
+cov(X)
+cor(X)
+```
+
+#### Multiple Random Data Sets
+
+Run the function.
+
+```{r}
+Xstar <- mvn(n = 100, mu = mu, Sigma = Sigma, R = 100)
+```
+
+Explore the output.
+
+```{r}
+str(Xstar, list.len = 6)
+```
+
+### `mvnram()`
+
+Generates an $n \times k$ multivariate data matrix
+or a list of $n \times k$ multivariate data matrices of length `R`
+from the multivariate normal distribution
+
+\begin{equation}
+  \mathbf{X} \sim \mathcal{N}_{k}
+  \left( \boldsymbol{\mu}, \boldsymbol{\Sigma} \right) .
+  %(\#eq:dist-X-mvn)
+\end{equation}
+
+\noindent The model-implied matrices used to generate data
+is derived from the Reticular Action Model (RAM) Matrices.
+
+#### Single Random Data Set
+
+Set matrices.
+
+```{r}
+mu <- c(100, 100, 100)
+A <- matrix(
+  data = c(0, sqrt(0.26), 0, 0, 0, sqrt(0.26), 0, 0, 0),
+  ncol = 3
+)
+S <- diag(c(225, 166.5, 116.5))
+F <- I <- diag(3)
+```
+
+Run the function.
+
+```{r}
+X <- mvnram(n = 100, mu = mu, A = A, S = S, F = F, I = I)
+```
+
+Explore the output.
+
+```{r}
+str(X)
+psych::pairs.panels(X)
+colMeans(X)
+cov(X)
+cor(X)
+```
+
+#### Multiple Random Data Sets
+
+Run the function.
+
+```{r}
+Xstar <- mvnram(n = 100, mu = mu, A = A, S = S, F = F, I = I, R = 100)
+```
+
+Explore the output.
+
+```{r}
+str(Xstar, list.len = 6)
+```

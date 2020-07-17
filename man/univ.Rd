@@ -30,16 +30,12 @@ Data generating function to generate univariate data.}
 \item{...}{Arguments to pass to \code{rFUN}.}
 
 \item{R}{Integer.
-Number of Monte Carlo replications.
-If \code{R} is not provided,
+Number of Monte Carlo replications. If \code{R} is not provided,
 the function produces a single random data set.
-If \code{R} is an integer greater than 1,
-(e.g., \code{R = 10}),
-the function produces
-multiple random data sets
+If \code{R} is an integer greater than 1, (e.g., \code{R = 10}),
+the function produces multiple random data sets
 stored in each element of a list of length \code{R}.
-\code{par} and all succeeding arguments are only relevant
-when \code{R > 1}.}
+\code{par} and all succeeding arguments are only relevant when \code{R > 1}.}
 
 \item{par}{Logical.
 If \code{TRUE}, use multiple cores.
@@ -88,20 +84,10 @@ before using this option.}
 }
 \value{
 If \code{R = NULL} or \code{R = 1},
-returns an
-\eqn{
-  n \times 1
-}
-univariate data vector
-generated using \code{rFUN} and parameters passed to \code{...}.
-If \code{R} is an integer greater than 1,
-(e.g., \code{R = 10})
-returns a list of length \code{R} of
-\eqn{
-  n
-  \times 1
-}
-univariate data vector
+returns an \eqn{ n \times 1 } univariate data vector generated
+using \code{rFUN} and parameters passed to \code{...}.
+If \code{R} is an integer greater than 1, (e.g., \code{R = 10})
+returns a list of length \code{R} of \eqn{ n \times 1 } univariate data vector
 generated using \code{rFUN} and parameters passed to \code{...}.
 }
 \description{
@@ -110,66 +96,20 @@ or a list of \eqn{n \times 1} univariate data vectors of length \code{R}.
 The default data generating function
 is the normal distribution
 \deqn{
-  X
-  \sim
-  \mathcal{N}
-  \left(
-    \mu,
-    \sigma^2
-  \right) .
-  %(\#eq:dist-X-norm)
-}
+    X \sim \mathcal{N} \left( \mu, \sigma^2 \right) .
+    %(\#eq:dist-X-norm)
+  }
 }
 \details{
 The univariate distribution and parameters used
-in the data generating process
-can be specified using \code{rFUN} and \code{...}.
+in the data generating process can be specified using \code{rFUN} and \code{...}.
 
-Options for explicit parallelism are provided
-when \code{R > 1} especially when \code{R} is large.
-See \code{par} and suceeding arguments.
+Options for explicit parallelism are provided when \code{R > 1}
+especially when \code{R} is large. See \code{par} and suceeding arguments.
 }
 \examples{
-n <- 1000
-R <- 5
-# normal distribution---------------------------------------------------------
-mu <- 0
-sigma2 <- 1
-sigma <- sqrt(sigma2)
-x <- univ(n = n, rFUN = rnorm, mean = mu, sd = sigma)
-str(x)
-hist(x, main = "Normal Distribution")
-x <- univ(n = n, rFUN = rnorm, R = R, mean = mu, sd = sigma)
-str(x)
-# bernoulli distribution------------------------------------------------------
-n_trials <- 1
-p <- 0.50
-x <- univ(n = n, rFUN = rbinom, size = n_trials, prob = p)
-str(x)
-barplot(table(x), main = "Bernoulli Distribution")
-x <- univ(n = n, rFUN = rbinom, R = R, size = n_trials, prob = p)
-str(x)
-# binomial distribution-------------------------------------------------------
-n_trials <- 20
-p <- 0.50
-x <- univ(n = n, rFUN = rbinom, size = n_trials, prob = p)
-barplot(table(x), main = "Binomial Distribution")
-str(x)
-x <- univ(n = n, rFUN = rbinom, R = R, size = n_trials, prob = p)
-str(x)
-# exponential distribution----------------------------------------------------
-rate <- 1
-x <- univ(n = n, rFUN = rexp, rate = rate)
-hist(x, main = "Exponential Distribution")
-str(x)
-x <- univ(n = n, rFUN = rexp, R = R, rate = rate)
-str(x)
-# rbind = TRUE----------------------------------------------------------------
-set.seed(42)
-univ(n = 5, rFUN = rnorm, R = 5, rbind = TRUE, mean = mu, sd = sigma)
-# rbind = FALSE---------------------------------------------------------------
-set.seed(42)
-univ(n = 5, rFUN = rnorm, R = 5, rbind = FALSE, mean = mu, sd = sigma)
+x <- univ(n = 1000, rFUN = rnorm, mean = 100, sd = sqrt(225))
+xstar <- univ(n = 1000, rFUN = rnorm, mean = 100, sd = sqrt(225), R = 1000)
 }
 \author{
 Ivan Jacob Agaloos Pesigan

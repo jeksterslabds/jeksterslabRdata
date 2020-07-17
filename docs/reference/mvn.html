@@ -8,15 +8,10 @@
 
 <title>Generate Multivariate Normal Data
 \(
-  \mathbf{X}
-  \sim
-  \mathcal{N}_{k}
-  \left(
-    \boldsymbol{\mu},
-    \boldsymbol{\Sigma}
-  \right)
-  %(\#eq:dist-X-mvn)
-\) — mvn • jeksterslabRdata</title>
+    \mathbf{X} \sim \mathcal{N}_{k}
+    \left( \boldsymbol{\mu}, \boldsymbol{\Sigma} \right)
+    %(\#eq:dist-X-mvn)
+  \) — mvn • jeksterslabRdata</title>
 
 
 <!-- jquery -->
@@ -51,30 +46,19 @@
 
 <meta property="og:title" content="Generate Multivariate Normal Data
 \(
-  \mathbf{X}
-  \sim
-  \mathcal{N}_{k}
-  \left(
-    \boldsymbol{\mu},
-    \boldsymbol{\Sigma}
-  \right)
-  %(\#eq:dist-X-mvn)
-\) — mvn" />
+    \mathbf{X} \sim \mathcal{N}_{k}
+    \left( \boldsymbol{\mu}, \boldsymbol{\Sigma} \right)
+    %(\#eq:dist-X-mvn)
+  \) — mvn" />
 <meta property="og:description" content="Generates an \(n \times k\) multivariate data matrix
 or a list of \(n \times k\) multivariate data matrices of length R
 from the multivariate normal distribution
 $$
-  \mathbf{X}
-  \sim
-  \mathcal{N}_{k}
-  \left(
-    \boldsymbol{\mu},
-    \boldsymbol{\Sigma}
-  \right) .
-  %(\#eq:dist-X-mvn)
-$$
-This function is a wrapper around
-MASS::mvrnorm()." />
+    \mathbf{X} \sim \mathcal{N}_{k}
+    \left( \boldsymbol{\mu}, \boldsymbol{\Sigma} \right) .
+    %(\#eq:dist-X-mvn)
+  $$
+This function is a wrapper around MASS::mvrnorm()." />
 
 
 
@@ -132,13 +116,25 @@ MASS::mvrnorm()." />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/tests/test_2_plus_2.html">Test: test_2_plus_2</a>
+      <a href="../articles/examples/examples_fit.html">Examples for the fit() function</a>
     </li>
     <li>
-      <a href="../articles/tests/test_univ_exp.html">Test: Univariate Data Generation - Exponential Distribution</a>
+      <a href="../articles/examples/examples_mvn.html">Examples for the mvn() function</a>
     </li>
     <li>
-      <a href="../articles/tests/test_univ_norm.html">Test: Univariate Data Generation - Normal Distribution</a>
+      <a href="../articles/examples/examples_mvnram.html">Examples for the mvnram() function</a>
+    </li>
+    <li>
+      <a href="../articles/examples/examples_mvnramsigma2.html">Examples for the mvnramsigma2() function</a>
+    </li>
+    <li>
+      <a href="../articles/examples/examples_univ.html">Examples for the univ() function</a>
+    </li>
+    <li>
+      <a href="../articles/tests/test_univ_exp.html">Tests for the univ() function - Exponential Distribution</a>
+    </li>
+    <li>
+      <a href="../articles/tests/test_univ_norm.html">Tests for the univ() function - Normal Distribution</a>
     </li>
   </ul>
 </li>
@@ -168,15 +164,10 @@ MASS::mvrnorm()." />
     <div class="page-header">
     <h1>Generate Multivariate Normal Data
 \(
-  \mathbf{X}
-  \sim
-  \mathcal{N}_{k}
-  \left(
-    \boldsymbol{\mu},
-    \boldsymbol{\Sigma}
-  \right)
-  %(\#eq:dist-X-mvn)
-\)</h1>
+    \mathbf{X} \sim \mathcal{N}_{k}
+    \left( \boldsymbol{\mu}, \boldsymbol{\Sigma} \right)
+    %(\#eq:dist-X-mvn)
+  \)</h1>
     <small class="dont-index">Source: <a href='https://github.com/jeksterslabds/jeksterslabRdata/blob/master/R/mvn.R'><code>R/mvn.R</code></a></small>
     <div class="hidden name"><code>mvn.Rd</code></div>
     </div>
@@ -186,26 +177,21 @@ MASS::mvrnorm()." />
 or a list of \(n \times k\) multivariate data matrices of length <code>R</code>
 from the multivariate normal distribution
 $$
-  \mathbf{X}
-  \sim
-  \mathcal{N}_{k}
-  \left(
-    \boldsymbol{\mu},
-    \boldsymbol{\Sigma}
-  \right) .
-  %(\#eq:dist-X-mvn)
-$$
-This function is a wrapper around
-<code><a href='https://rdrr.io/pkg/MASS/man/mvrnorm.html'>MASS::mvrnorm()</a></code>.</p>
+    \mathbf{X} \sim \mathcal{N}_{k}
+    \left( \boldsymbol{\mu}, \boldsymbol{\Sigma} \right) .
+    %(\#eq:dist-X-mvn)
+  $$
+This function is a wrapper around <code><a href='https://rdrr.io/pkg/MASS/man/mvrnorm.html'>MASS::mvrnorm()</a></code>.</p>
     </div>
 
     <pre class="usage"><span class='fu'>mvn</span>(
   <span class='no'>n</span>,
   <span class='kw'>mu</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='no'>Sigma</span>,
-  <span class='kw'>df</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>tol</span> <span class='kw'>=</span> <span class='fl'>1e-06</span>,
   <span class='kw'>empirical</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>df</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>varnames</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>R</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>par</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>ncores</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
@@ -237,11 +223,6 @@ Location parameter mean vector \(\boldsymbol{\mu}\) of length \(k\).</p></td>
 \(\boldsymbol{\Sigma}\).</p></td>
     </tr>
     <tr>
-      <th>df</th>
-      <td><p>Logical.
-Convert matrix to data.frame.</p></td>
-    </tr>
-    <tr>
       <th>tol</th>
       <td><p>Numeric.
 Tolerance (relative to largest variance)
@@ -250,22 +231,29 @@ for numerical lack of positive-definiteness in <code>Sigma</code>.</p></td>
     <tr>
       <th>empirical</th>
       <td><p>Logical.
-If <code>TRUE</code>, <code>mu</code> and <code>Sigma</code> specify the empirical
-not population mean and covariance matrix.</p></td>
+If <code>TRUE</code>, <code>mu</code> and <code>Sigma</code> specify the empirical,
+not population. mean and covariance matrix.</p></td>
+    </tr>
+    <tr>
+      <th>df</th>
+      <td><p>Logical.
+If <code>TRUE</code>, the function returns a data frame.
+If <code>FALSE</code>, the function returns a matrix.</p></td>
+    </tr>
+    <tr>
+      <th>varnames</th>
+      <td><p>Character string.
+Optional column names with the same length as <code>mu</code>.</p></td>
     </tr>
     <tr>
       <th>R</th>
       <td><p>Integer.
-Number of Monte Carlo replications.
-If <code>R</code> is not provided,
+Number of Monte Carlo replications. If <code>R</code> is not provided,
 the function produces a single random data set.
-If <code>R</code> is an integer greater than 1,
-(e.g., <code>R = 10</code>),
-the function produces
-multiple random data sets
+If <code>R</code> is an integer greater than 1, (e.g., <code>R = 10</code>),
+the function produces multiple random data sets
 stored in each element of a list of length <code>R</code>.
-<code>par</code> and all succeeding arguments are only relevant
-when <code>R &gt; 1</code>.</p></td>
+<code>par</code> and all succeeding arguments are only relevant when <code>R &gt; 1</code>.</p></td>
     </tr>
     <tr>
       <th>par</th>
@@ -321,39 +309,25 @@ Ignored if <code>mc = TRUE</code>.</p></td>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>If <code>R = NULL</code> or <code>R = 1</code>,
-returns an \(n \times k\) multivariate normal data matrix generated
-using the mean vector <code>mu</code>
-\(\left( \boldsymbol{\mu} \right)\)
-and the variance-covariance matrix <code>Sigma</code>
-\(\left( \boldsymbol{\Sigma} \right)\)
-provided.
-If <code>R</code> is an integer greater than 1,
-(e.g., <code>R = 10</code>)
-returns a list of length <code>R</code> of
-\(n \times k\) multivariate normal data matrices generated
-using the mean vector <code>mu</code>
-and the variance-covariance matrix
-<code>Sigma</code> provided.</p>
+    <p>If <code>R = NULL</code> or <code>R = 1</code>, returns an \(n \times k\)
+multivariate normal data matrix or data frame .
+If <code>R</code> is an integer greater than 1, (e.g., <code>R = 10</code>)
+returns a list of length <code>R</code> of \(n \times k\)
+multivariate normal data matrix or data frame.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>The multivariate normal distribution has two parameters,
-namely the
-\(k \times 1\) mean vector
-<code>mu</code> \(\left( \boldsymbol{\mu} \right)\)
-and the
-\(k \times k\) variance-covariance matrix
-<code>Sigma</code> \(\left( \boldsymbol{\Sigma} \right)\).
+    <p>The multivariate normal distribution has two parameters, namely
+the \(k \times 1\) mean vector <code>mu</code> \(\left( \boldsymbol{\mu} \right)\)
+and the \(k \times k\) variance-covariance matrix <code>Sigma</code>
+\(\left( \boldsymbol{\Sigma} \right)\).
 If <code>mu</code> is not provided,
 it is set to a vector of zeroes with the appropriate length.</p>
-<p>Options for explicit parallelism are provided
-when <code>R &gt; 1</code> especially when <code>R</code> is large.
-See <code>par</code> and suceeding arguments.</p>
+<p>Options for explicit parallelism are provided when <code>R &gt; 1</code>
+especially when <code>R</code> is large. See <code>par</code> and suceeding arguments.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Venables, W. N., Ripley, B. D., &amp; Venables, W. N. (2002).
-<em>Modern applied statistics with S</em>.
-New York, N.Y: Springer.</p>
+<em>Modern applied statistics with S</em>.  New York, N.Y: Springer.</p>
 <p><a href='https://en.wikipedia.org/wiki/Multivariate_normal_distribution'>Wikipedia: Multivariate normal distribution</a></p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
@@ -365,57 +339,13 @@ for more information on the multivariate normal distribution.</p>
 <code><a href='mvnram.html'>mvnram</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>Sigma</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>(
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(
-    <span class='fl'>225</span>, <span class='fl'>112.50</span>, <span class='fl'>56.25</span>,
-    <span class='fl'>112.5</span>, <span class='fl'>225</span>, <span class='fl'>112.5</span>,
-    <span class='fl'>56.25</span>, <span class='fl'>112.50</span>, <span class='fl'>225</span>
-  ),
+    <pre class="examples"><div class='input'><span class='no'>mu</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>100</span>, <span class='fl'>100</span>, <span class='fl'>100</span>)
+<span class='no'>Sigma</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>(
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>225</span>, <span class='fl'>112.50</span>, <span class='fl'>56.25</span>, <span class='fl'>112.5</span>, <span class='fl'>225</span>, <span class='fl'>112.5</span>, <span class='fl'>56.25</span>, <span class='fl'>112.50</span>, <span class='fl'>225</span>),
   <span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>3</span>
 )
-<span class='no'>mu</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>100</span>, <span class='fl'>100</span>, <span class='fl'>100</span>)
-<span class='co'># single random data set------------------------------------------------------</span>
-<span class='no'>X</span> <span class='kw'>&lt;-</span> <span class='fu'>mvn</span>(
-  <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>100</span>,
-  <span class='kw'>mu</span> <span class='kw'>=</span> <span class='no'>mu</span>,
-  <span class='kw'>Sigma</span> <span class='kw'>=</span> <span class='no'>Sigma</span>
-)
-<span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span>(<span class='no'>X</span>, <span class='kw'>list.len</span> <span class='kw'>=</span> <span class='fl'>6</span>)</div><div class='output co'>#&gt; 'data.frame':	100 obs. of  3 variables:
-#&gt;  $ V1: num  104 47.9 122.4 98.2 98.8 ...
-#&gt;  $ V2: num  124.9 66.2 102.3 93.6 71.8 ...
-#&gt;  $ V3: num  95.5 61.4 98.1 89.8 112.3 ...</div><div class='input'><span class='co'># multiple random data sets---------------------------------------------------</span>
-<span class='no'>X</span> <span class='kw'>&lt;-</span> <span class='fu'>mvn</span>(
-  <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>100</span>,
-  <span class='kw'>mu</span> <span class='kw'>=</span> <span class='no'>mu</span>,
-  <span class='kw'>Sigma</span> <span class='kw'>=</span> <span class='no'>Sigma</span>,
-  <span class='kw'>R</span> <span class='kw'>=</span> <span class='fl'>10</span>
-)
-<span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span>(<span class='no'>X</span>, <span class='kw'>list.len</span> <span class='kw'>=</span> <span class='fl'>6</span>)</div><div class='output co'>#&gt; List of 10
-#&gt;  $ :'data.frame':	100 obs. of  3 variables:
-#&gt;   ..$ V1: num [1:100] 108 101 100 100 115 ...
-#&gt;   ..$ V2: num [1:100] 88.1 119.3 123.1 76.5 121.3 ...
-#&gt;   ..$ V3: num [1:100] 86.1 98.4 116.6 82.5 93.5 ...
-#&gt;  $ :'data.frame':	100 obs. of  3 variables:
-#&gt;   ..$ V1: num [1:100] 82.6 110.6 94.2 56.1 98.5 ...
-#&gt;   ..$ V2: num [1:100] 110.6 113 105.7 74.7 98.8 ...
-#&gt;   ..$ V3: num [1:100] 111.1 92.9 114.2 87.6 105.1 ...
-#&gt;  $ :'data.frame':	100 obs. of  3 variables:
-#&gt;   ..$ V1: num [1:100] 94.4 96 74.7 98.5 87.6 ...
-#&gt;   ..$ V2: num [1:100] 75.6 103.6 88.4 112 110.6 ...
-#&gt;   ..$ V3: num [1:100] 59.5 110.8 100.3 116.5 79.6 ...
-#&gt;  $ :'data.frame':	100 obs. of  3 variables:
-#&gt;   ..$ V1: num [1:100] 106.8 92.8 97.8 105.7 82.7 ...
-#&gt;   ..$ V2: num [1:100] 106.1 108.4 102.8 97.8 90.8 ...
-#&gt;   ..$ V3: num [1:100] 84.4 94.4 88 84.4 100.7 ...
-#&gt;  $ :'data.frame':	100 obs. of  3 variables:
-#&gt;   ..$ V1: num [1:100] 118.2 93.6 98.3 111.8 111.1 ...
-#&gt;   ..$ V2: num [1:100] 125.3 89 96 92.5 108.2 ...
-#&gt;   ..$ V3: num [1:100] 109.7 90.4 88 90.3 113.8 ...
-#&gt;  $ :'data.frame':	100 obs. of  3 variables:
-#&gt;   ..$ V1: num [1:100] 84.2 67.1 57.4 109.1 98.6 ...
-#&gt;   ..$ V2: num [1:100] 92.3 92.3 66 96.2 114.6 ...
-#&gt;   ..$ V3: num [1:100] 94.6 74.5 66.9 83.2 88.1 ...
-#&gt;   [list output truncated]</div></pre>
+<span class='no'>X</span> <span class='kw'>&lt;-</span> <span class='fu'>mvn</span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>mu</span> <span class='kw'>=</span> <span class='no'>mu</span>, <span class='kw'>Sigma</span> <span class='kw'>=</span> <span class='no'>Sigma</span>)
+<span class='no'>Xstar</span> <span class='kw'>&lt;-</span> <span class='fu'>mvn</span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>mu</span> <span class='kw'>=</span> <span class='no'>mu</span>, <span class='kw'>Sigma</span> <span class='kw'>=</span> <span class='no'>Sigma</span>, <span class='kw'>R</span> <span class='kw'>=</span> <span class='fl'>100</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

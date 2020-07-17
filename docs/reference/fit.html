@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Fit — fit • jeksterslabRdata</title>
+<title>Fit a Function to Each Element of a List of Data — fit • jeksterslabRdata</title>
 
 
 <!-- jquery -->
@@ -39,9 +39,8 @@
 
 
 
-<meta property="og:title" content="Fit — fit" />
-<meta property="og:description" content="Fit a function to each element
-of a list of data." />
+<meta property="og:title" content="Fit a Function to Each Element of a List of Data — fit" />
+<meta property="og:description" content="Fits a function to each element of a list of data." />
 
 
 
@@ -99,13 +98,25 @@ of a list of data." />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/tests/test_2_plus_2.html">Test: test_2_plus_2</a>
+      <a href="../articles/examples/examples_fit.html">Examples for the fit() function</a>
     </li>
     <li>
-      <a href="../articles/tests/test_univ_exp.html">Test: Univariate Data Generation - Exponential Distribution</a>
+      <a href="../articles/examples/examples_mvn.html">Examples for the mvn() function</a>
     </li>
     <li>
-      <a href="../articles/tests/test_univ_norm.html">Test: Univariate Data Generation - Normal Distribution</a>
+      <a href="../articles/examples/examples_mvnram.html">Examples for the mvnram() function</a>
+    </li>
+    <li>
+      <a href="../articles/examples/examples_mvnramsigma2.html">Examples for the mvnramsigma2() function</a>
+    </li>
+    <li>
+      <a href="../articles/examples/examples_univ.html">Examples for the univ() function</a>
+    </li>
+    <li>
+      <a href="../articles/tests/test_univ_exp.html">Tests for the univ() function - Exponential Distribution</a>
+    </li>
+    <li>
+      <a href="../articles/tests/test_univ_norm.html">Tests for the univ() function - Normal Distribution</a>
     </li>
   </ul>
 </li>
@@ -133,14 +144,13 @@ of a list of data." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Fit</h1>
+    <h1>Fit a Function to Each Element of a List of Data</h1>
     <small class="dont-index">Source: <a href='https://github.com/jeksterslabds/jeksterslabRdata/blob/master/R/fit.R'><code>R/fit.R</code></a></small>
     <div class="hidden name"><code>fit.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Fit a function to each element
-of a list of data.</p>
+    <p>Fits a function to each element of a list of data.</p>
     </div>
 
     <pre class="usage"><span class='fu'>fit</span>(
@@ -164,8 +174,7 @@ of a list of data.</p>
     <tr>
       <th>Xstar</th>
       <td><p>List.
-A list of length <code>R</code> with a data set of length <code>n</code>
-in each element of the list.</p></td>
+A list of length <code>R</code> with a data set of length <code>n</code> in each element of the list.</p></td>
     </tr>
     <tr>
       <th>fitFUN</th>
@@ -246,43 +255,24 @@ before using this option.</p></td>
     <p>Returns a list of parameter estimates.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>The first argument of <code>fitFUN</code> should be <code>data</code>.
+    <p>The first argument of <code>fitFUN</code> should be <code>data</code>
 The output of <code>fitFUN</code> should be a vector.</p>
 <p>Options for explicit parallelism are provided.
 See <code>par</code> and suceeding arguments.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>n</span> <span class='kw'>&lt;-</span> <span class='fl'>4</span>
-<span class='no'>R</span> <span class='kw'>&lt;-</span> <span class='fl'>1000</span>
-<span class='co'># normal distribution---------------------------------------------------------</span>
-<span class='no'>mu</span> <span class='kw'>&lt;-</span> <span class='fl'>100</span>
-<span class='no'>sigma2</span> <span class='kw'>&lt;-</span> <span class='fl'>225</span>
-<span class='no'>sigma</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>sqrt</a></span>(<span class='no'>sigma2</span>)
-<span class='no'>xstar</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='univ.html'>univ</a></span>(
-  <span class='kw'>n</span> <span class='kw'>=</span> <span class='no'>n</span>,
-  <span class='kw'>rFUN</span> <span class='kw'>=</span> <span class='no'>rnorm</span>,
-  <span class='kw'>R</span> <span class='kw'>=</span> <span class='no'>R</span>,
-  <span class='kw'>mean</span> <span class='kw'>=</span> <span class='no'>mu</span>,
-  <span class='kw'>sd</span> <span class='kw'>=</span> <span class='no'>sigma</span>
-)
-<span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span>(<span class='no'>xstar</span>, <span class='kw'>list.len</span> <span class='kw'>=</span> <span class='fl'>6</span>)</div><div class='output co'>#&gt; List of 1000
-#&gt;  $ : num [1:4] 79 103.8 63.4 99.9
-#&gt;  $ : num [1:4] 109.3 117.2 72.7 96.3
-#&gt;  $ : num [1:4] 96.3 95.8 91.7 109.4
-#&gt;  $ : num [1:4] 131 75.5 107.7 72.1
-#&gt;  $ : num [1:4] 92.2 99.2 108.1 86.3
-#&gt;  $ : num [1:4] 107 105.4 80.4 111.1
-#&gt;   [list output truncated]</div><div class='input'><span class='co'># fit the var function--------------------------------------------------------</span>
-<span class='no'>thetahatstar</span> <span class='kw'>&lt;-</span> <span class='fu'>fit</span>(
-  <span class='kw'>Xstar</span> <span class='kw'>=</span> <span class='no'>xstar</span>,
-  <span class='kw'>fitFUN</span> <span class='kw'>=</span> <span class='no'>var</span>,
-  <span class='kw'>rbind</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>par</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
-)
-<span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span>(<span class='no'>thetahatstar</span>)</div><div class='output co'>#&gt;  num [1:1000, 1] 356.1 379.7 59.3 783.6 88.7 ...</div><div class='input'><span class='co'># The sampling distribution of sample variances</span>
-<span class='co'># follows a chi-square distribution with df = n - 1</span>
-<span class='co'># when the population is normally distributed</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/hist.html'>hist</a></span>(<span class='no'>thetahatstar</span>)</div><div class='img'><img src='fit-1.png' alt='' width='700' height='433' /></div></pre>
+    <pre class="examples"><div class='input'><span class='no'>xstar</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='univ.html'>univ</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>rFUN</span> <span class='kw'>=</span> <span class='no'>rnorm</span>, <span class='kw'>mean</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>sd</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>sqrt</a></span>(<span class='fl'>225</span>), <span class='kw'>R</span> <span class='kw'>=</span> <span class='fl'>100</span>)
+<span class='no'>thetahatstar</span> <span class='kw'>&lt;-</span> <span class='fu'>fit</span>(<span class='kw'>Xstar</span> <span class='kw'>=</span> <span class='no'>xstar</span>, <span class='kw'>fitFUN</span> <span class='kw'>=</span> <span class='no'>mean</span>, <span class='kw'>rbind</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span>(<span class='no'>thetahatstar</span>)</div><div class='output co'>#&gt; [1] 100.0171</div><div class='input'><span class='no'>Xstar</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='mvn.html'>mvn</a></span>(
+  <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>100</span>,
+  <span class='kw'>Sigma</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>.5</span>, <span class='fl'>.5</span>, <span class='fl'>1</span>), <span class='kw'>nrow</span> <span class='kw'>=</span> <span class='fl'>2</span>),
+  <span class='kw'>R</span> <span class='kw'>=</span> <span class='fl'>100</span>
+)</div><div class='output co'>#&gt; <span class='message'>mu = NULL. mu is set to a vector of zeroes of length 2.</span></div><div class='input'><span class='no'>foo</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>X</span>) {
+  <span class='fu'><a href='https://rdrr.io/r/base/vector.html'>as.vector</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>cov</a></span>(<span class='no'>X</span>))
+}
+<span class='no'>thetahatstar</span> <span class='kw'>&lt;-</span> <span class='fu'>fit</span>(<span class='kw'>Xstar</span> <span class='kw'>=</span> <span class='no'>Xstar</span>, <span class='kw'>fitFUN</span> <span class='kw'>=</span> <span class='no'>foo</span>, <span class='kw'>rbind</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='no'>thetahatstar</span> <span class='kw'>&lt;-</span> <span class='no'>thetahatstar</span>[, <span class='fl'>2</span>]
+<span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span>(<span class='no'>thetahatstar</span>)</div><div class='output co'>#&gt; [1] 0.5043345</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

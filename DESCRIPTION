@@ -38,5 +38,6 @@ Suggests:
 	knitr,
 	rmarkdown,
 	testthat,
-    microbenchmark
+    microbenchmark,
+    psych
 RoxygenNote: 7.1.1

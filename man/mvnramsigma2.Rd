@@ -4,27 +4,26 @@
 \alias{mvnramsigma2}
 \title{Generate Multivariate Normal Data
 \eqn{
-  \mathbf{X}
-  \sim
-  \mathcal{N}_{k}
-  \left(
-    \boldsymbol{\mu},
-    \boldsymbol{\Sigma}
-  \right)
-  %(\#eq:dist-X-mvn)
-}
-from the Reticular Action Model (RAM) Matrices.}
+    \mathbf{X} \sim \mathcal{N}_{k}
+    \left( \boldsymbol{\mu}, \boldsymbol{\Sigma} \right)
+    %(\#eq:dist-X-mvn)
+  }
+from the Reticular Action Model  Matrices
+\eqn{\mathrm{A}}, \eqn{\mathrm{F}}, \eqn{\mathrm{I}},
+and the vector of variable variances \eqn{\sigma^2}}
 \usage{
 mvnramsigma2(
   n,
+  mu = NULL,
+  M = NULL,
   A,
   sigma2,
   F,
   I,
-  M = NULL,
-  mu = NULL,
   tol = 1e-06,
   empirical = FALSE,
+  df = FALSE,
+  varnames = NULL,
   R = NULL,
   par = FALSE,
   ncores = NULL,
@@ -39,6 +38,13 @@ mvnramsigma2(
 \arguments{
 \item{n}{Integer.
 Sample size.}
+
+\item{mu}{Numeric vector.
+Location parameter mean vector \eqn{\boldsymbol{\mu}} of length \eqn{k}.}
+
+\item{M}{Numeric vector.
+Mean structure.
+Vector of means and intercepts.}
 
 \item{A}{\eqn{\mathbf{A}} matrix.
 Asymmetric paths (single-headed arrows),
@@ -55,32 +61,28 @@ used to select the observed variables.}
 \item{I}{\eqn{\mathbf{I}} matrix.
 Identity matrix.}
 
-\item{M}{Numeric vector.
-Mean structure.
-Vector of means and intercepts.}
-
-\item{mu}{Numeric vector.
-Location parameter mean vector \eqn{\boldsymbol{\mu}} of length \eqn{k}.}
-
 \item{tol}{Numeric.
 Tolerance (relative to largest variance)
 for numerical lack of positive-definiteness in \code{Sigma}.}
 
 \item{empirical}{Logical.
-If \code{TRUE}, \code{mu} and \code{Sigma} specify the empirical
-not population mean and covariance matrix.}
+If \code{TRUE}, \code{mu} and \code{Sigma} specify the empirical,
+not population. mean and covariance matrix.}
+
+\item{df}{Logical.
+If \code{TRUE}, the function returns a data frame.
+If \code{FALSE}, the function returns a matrix.}
+
+\item{varnames}{Character string.
+Optional column names with the same length as \code{mu}.}
 
 \item{R}{Integer.
-Number of Monte Carlo replications.
-If \code{R} is not provided,
+Number of Monte Carlo replications. If \code{R} is not provided,
 the function produces a single random data set.
-If \code{R} is an integer greater than 1,
-(e.g., \code{R = 10}),
-the function produces
-multiple random data sets
+If \code{R} is an integer greater than 1, (e.g., \code{R = 10}),
+the function produces multiple random data sets
 stored in each element of a list of length \code{R}.
-\code{par} and all succeeding arguments are only relevant
-when \code{R > 1}.}
+\code{par} and all succeeding arguments are only relevant when \code{R > 1}.}
 
 \item{par}{Logical.
 If \code{TRUE}, use multiple cores.
@@ -117,43 +119,40 @@ Names of objects to pass to \code{\link[parallel:clusterApply]{parallel::cluster
 Ignored if \code{mc = TRUE}.}
 }
 \value{
-If \code{R = NULL} or \code{R = 1},
-returns an \eqn{n \times k} multivariate normal data matrix generated
-using the provided or derived mean vector \code{mu}
-\eqn{\left( \boldsymbol{\mu} \right)}
-and the derived variance-covariance matrix \code{Sigma}
-\eqn{\left( \boldsymbol{\Sigma} \right)}.
-If \code{R} is an integer greater than 1,
-(e.g., \code{R = 10})
-returns a list of length \code{R} of
-\eqn{n \times k} multivariate normal data matrices generated
-using the provided or derived mean vector \code{mu}
-and the derived variance-covariance matrix \code{Sigma}.
+If \code{R = NULL} or \code{R = 1}, returns an \eqn{n \times k}
+multivariate normal data matrix or data frame .
+If \code{R} is an integer greater than 1, (e.g., \code{R = 10})
+returns a list of length \code{R} of \eqn{n \times k}
+multivariate normal data matrix or data frame.
 }
 \description{
-The \eqn{\mathbf{S}} matrix
-is derived from a vector of variances.
+Generates an \eqn{n \times k} multivariate data matrix
+or a list of \eqn{n \times k} multivariate data matrices of length \code{R}
+from the multivariate normal distribution
+\deqn{
+    \mathbf{X} \sim \mathcal{N}_{k}
+    \left( \boldsymbol{\mu}, \boldsymbol{\Sigma} \right) .
+    %(\#eq:dist-X-mvn)
+  }
+The model-implied matrices used to generate data
+is derived from the Reticular Action Model (RAM) Matrices.
+}
+\details{
+The \eqn{\mathbf{S}} matrix is derived
+from a vector of variances sigma2 \eqn{\left( \sigma^2 \right)}
+and the proceeds to generating data using the \code{\link[=mvnram]{mvnram()}} function.
+\strong{The first element in sigma2 should be the variance of an exogenous variable.}
 }
 \examples{
-# One-factor CFA model--------------------------------------------------------
-A <- matrix(data = 0, ncol = 6, nrow = 6)
-for (i in 2:6) {
-  A[i, 1] <- 0.5
-}
-sigma2 <- c(1, 1, 1, 1, 1, 1)
-F <- I <- diag(nrow(A))
-F <- diag(nrow(A) - 1)
-F <- cbind(0, F)
-X <- mvnramsigma2(
-  n = 100,
-  A = A,
-  sigma2 = sigma2,
-  F = F,
-  I = I,
-  empirical = TRUE
+mu <- c(100, 100, 100)
+A <- matrix(
+  data = c(0, sqrt(0.26), 0, 0, 0, sqrt(0.26), 0, 0, 0),
+  ncol = 3
 )
-str(X, list.len = 6)
-cov(X)
+sigma2 <- c(225, 225, 225)
+F <- I <- diag(3)
+X <- mvnramsigma2(n = 100, mu = mu, A = A, sigma2 = sigma2, F = F, I = I)
+Xstar <- mvnramsigma2(n = 100, mu = mu, A = A, sigma2 = sigma2, F = F, I = I, R = 100)
 }
 \seealso{
 Other multivariate data functions: 
