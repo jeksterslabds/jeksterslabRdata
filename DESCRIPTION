@@ -25,10 +25,6 @@ Imports:
 	utils,
 	stats,
     MASS,
-    foreach,
-    doParallel,
-    doFuture,
-    future,
     jeksterslabRpar,
     jeksterslabRsem
 Remotes:
@@ -38,6 +34,5 @@ Suggests:
 	knitr,
 	rmarkdown,
 	testthat,
-    microbenchmark,
     psych
 RoxygenNote: 7.1.1
