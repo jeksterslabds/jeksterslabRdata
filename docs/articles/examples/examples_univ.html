@@ -73,10 +73,13 @@
       <a href="../../articles/examples/examples_univ.html">Examples for the univ() function</a>
     </li>
     <li>
-      <a href="../../articles/tests/test_univ_exp.html">Tests for the univ() function - Exponential Distribution</a>
+      <a href="../../articles/tests/tests_mvn.html">Tests for the mvn(), mvnram(), and mvnramsigma2 functions</a>
     </li>
     <li>
-      <a href="../../articles/tests/test_univ_norm.html">Tests for the univ() function - Normal Distribution</a>
+      <a href="../../articles/tests/tests_univ_exp.html">Tests for the univ() function - Exponential Distribution</a>
+    </li>
+    <li>
+      <a href="../../articles/tests/tests_univ_norm.html">Tests for the univ() function - Normal Distribution</a>
     </li>
   </ul>
 </li>
@@ -135,7 +138,7 @@
 <div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="no">x</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../../reference/univ.html">univ</a></span>(<span class="kw">n</span> <span class="kw">=</span> <span class="fl">100</span>, <span class="kw">rFUN</span> <span class="kw">=</span> <span class="no">rnorm</span>, <span class="kw">mean</span> <span class="kw">=</span> <span class="fl">100</span>, <span class="kw">sd</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span>(<span class="fl">225</span>))</pre></body></html></div>
 <p>Explore the output.</p>
 <div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span>(<span class="no">x</span>, <span class="kw">list.len</span> <span class="kw">=</span> <span class="fl">6</span>)
-<span class="co">#&gt;  num [1:100] 94.1 86.6 100.9 109.7 105.4 ...</span>
+<span class="co">#&gt;  num [1:100] 108.7 100.2 120.4 88.5 88.8 ...</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span>(<span class="no">x</span>, <span class="kw">main</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/expression.html">expression</a></span>(<span class="fu"><a href="https://rdrr.io/r/grDevices/plotmath.html">italic</a></span>(<span class="no">N</span>)(<span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="no">mu</span> <span class="kw">==</span> <span class="fl">100</span>, <span class="no">sigma</span>^<span class="fl">2</span> <span class="kw">==</span> <span class="fl">225</span>))))</pre></body></html></div>
 <p><img src="examples_univ_files/figure-html/unnamed-chunk-4-1.png" width="700"></p>
 </div>
@@ -147,12 +150,12 @@
 <p>Explore the output.</p>
 <div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span>(<span class="no">xstar</span>, <span class="kw">list.len</span> <span class="kw">=</span> <span class="fl">6</span>)
 <span class="co">#&gt; List of 100</span>
-<span class="co">#&gt;  $ : num [1:100] 90 86.1 94 105.6 77.7 ...</span>
-<span class="co">#&gt;  $ : num [1:100] 91.4 98.5 89 107 101.7 ...</span>
-<span class="co">#&gt;  $ : num [1:100] 85.5 107.3 78.7 88.3 100.3 ...</span>
-<span class="co">#&gt;  $ : num [1:100] 92.8 97.1 118.9 97.5 127.6 ...</span>
-<span class="co">#&gt;  $ : num [1:100] 117.1 108.3 117.4 136.7 90.5 ...</span>
-<span class="co">#&gt;  $ : num [1:100] 107.4 68.6 98.6 98.2 139.4 ...</span>
+<span class="co">#&gt;  $ : num [1:100] 124.4 97.5 101.4 90.1 110.7 ...</span>
+<span class="co">#&gt;  $ : num [1:100] 109.6 92.3 107 139 110.9 ...</span>
+<span class="co">#&gt;  $ : num [1:100] 88.8 103.7 101.8 92.8 81.1 ...</span>
+<span class="co">#&gt;  $ : num [1:100] 76.2 105.2 103.8 101.6 87.4 ...</span>
+<span class="co">#&gt;  $ : num [1:100] 104.8 107.7 76.8 94.8 104.1 ...</span>
+<span class="co">#&gt;  $ : num [1:100] 85.6 99.4 78.8 114.2 94.6 ...</span>
 <span class="co">#&gt;   [list output truncated]</span></pre></body></html></div>
 </div>
 </div>
@@ -166,7 +169,7 @@
 <div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="no">x</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../../reference/univ.html">univ</a></span>(<span class="kw">n</span> <span class="kw">=</span> <span class="fl">100</span>, <span class="kw">rFUN</span> <span class="kw">=</span> <span class="no">rbinom</span>, <span class="kw">size</span> <span class="kw">=</span> <span class="fl">1</span>, <span class="kw">prob</span> <span class="kw">=</span> <span class="fl">0.50</span>)</pre></body></html></div>
 <p>Explore the output.</p>
 <div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span>(<span class="no">x</span>, <span class="kw">list.len</span> <span class="kw">=</span> <span class="fl">6</span>)
-<span class="co">#&gt;  int [1:100] 1 1 1 1 0 1 0 0 0 0 ...</span>
+<span class="co">#&gt;  int [1:100] 0 0 0 1 1 0 1 1 0 0 ...</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/barplot.html">barplot</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span>(<span class="no">x</span>), <span class="kw">main</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/expression.html">expression</a></span>(<span class="fu"><a href="https://rdrr.io/r/grDevices/plotmath.html">italic</a></span>(<span class="st">"Bernoulli"</span>)(<span class="no">p</span> <span class="kw">==</span> <span class="fl">0.50</span>)))</pre></body></html></div>
 <p><img src="examples_univ_files/figure-html/unnamed-chunk-8-1.png" width="700"></p>
 </div>
@@ -178,12 +181,12 @@
 <p>Explore the output.</p>
 <div class="sourceCode" id="cb9"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span>(<span class="no">xstar</span>, <span class="kw">list.len</span> <span class="kw">=</span> <span class="fl">6</span>)
 <span class="co">#&gt; List of 100</span>
-<span class="co">#&gt;  $ : num [1:100] 90 86.1 94 105.6 77.7 ...</span>
-<span class="co">#&gt;  $ : num [1:100] 91.4 98.5 89 107 101.7 ...</span>
-<span class="co">#&gt;  $ : num [1:100] 85.5 107.3 78.7 88.3 100.3 ...</span>
-<span class="co">#&gt;  $ : num [1:100] 92.8 97.1 118.9 97.5 127.6 ...</span>
-<span class="co">#&gt;  $ : num [1:100] 117.1 108.3 117.4 136.7 90.5 ...</span>
-<span class="co">#&gt;  $ : num [1:100] 107.4 68.6 98.6 98.2 139.4 ...</span>
+<span class="co">#&gt;  $ : num [1:100] 124.4 97.5 101.4 90.1 110.7 ...</span>
+<span class="co">#&gt;  $ : num [1:100] 109.6 92.3 107 139 110.9 ...</span>
+<span class="co">#&gt;  $ : num [1:100] 88.8 103.7 101.8 92.8 81.1 ...</span>
+<span class="co">#&gt;  $ : num [1:100] 76.2 105.2 103.8 101.6 87.4 ...</span>
+<span class="co">#&gt;  $ : num [1:100] 104.8 107.7 76.8 94.8 104.1 ...</span>
+<span class="co">#&gt;  $ : num [1:100] 85.6 99.4 78.8 114.2 94.6 ...</span>
 <span class="co">#&gt;   [list output truncated]</span></pre></body></html></div>
 </div>
 </div>
@@ -197,7 +200,7 @@
 <div class="sourceCode" id="cb10"><html><body><pre class="r"><span class="no">x</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../../reference/univ.html">univ</a></span>(<span class="kw">n</span> <span class="kw">=</span> <span class="fl">100</span>, <span class="kw">rFUN</span> <span class="kw">=</span> <span class="no">rbinom</span>, <span class="kw">size</span> <span class="kw">=</span> <span class="fl">20</span>, <span class="kw">prob</span> <span class="kw">=</span> <span class="fl">0.50</span>)</pre></body></html></div>
 <p>Explore the output.</p>
 <div class="sourceCode" id="cb11"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span>(<span class="no">x</span>, <span class="kw">list.len</span> <span class="kw">=</span> <span class="fl">6</span>)
-<span class="co">#&gt;  int [1:100] 12 11 6 13 11 12 9 15 9 8 ...</span>
+<span class="co">#&gt;  int [1:100] 11 12 9 13 9 10 10 10 9 14 ...</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/barplot.html">barplot</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span>(<span class="no">x</span>), <span class="kw">main</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/expression.html">expression</a></span>(<span class="fu"><a href="https://rdrr.io/r/grDevices/plotmath.html">italic</a></span>(<span class="st">"Binomial"</span>)(<span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="no">n</span> <span class="kw">==</span> <span class="fl">20</span>, <span class="no">p</span> <span class="kw">==</span> <span class="fl">0.50</span>))))</pre></body></html></div>
 <p><img src="examples_univ_files/figure-html/unnamed-chunk-12-1.png" width="700"></p>
 </div>
@@ -209,12 +212,12 @@
 <p>Explore the output.</p>
 <div class="sourceCode" id="cb13"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span>(<span class="no">xstar</span>, <span class="kw">list.len</span> <span class="kw">=</span> <span class="fl">6</span>)
 <span class="co">#&gt; List of 100</span>
-<span class="co">#&gt;  $ : num [1:100] 90 86.1 94 105.6 77.7 ...</span>
-<span class="co">#&gt;  $ : num [1:100] 91.4 98.5 89 107 101.7 ...</span>
-<span class="co">#&gt;  $ : num [1:100] 85.5 107.3 78.7 88.3 100.3 ...</span>
-<span class="co">#&gt;  $ : num [1:100] 92.8 97.1 118.9 97.5 127.6 ...</span>
-<span class="co">#&gt;  $ : num [1:100] 117.1 108.3 117.4 136.7 90.5 ...</span>
-<span class="co">#&gt;  $ : num [1:100] 107.4 68.6 98.6 98.2 139.4 ...</span>
+<span class="co">#&gt;  $ : num [1:100] 124.4 97.5 101.4 90.1 110.7 ...</span>
+<span class="co">#&gt;  $ : num [1:100] 109.6 92.3 107 139 110.9 ...</span>
+<span class="co">#&gt;  $ : num [1:100] 88.8 103.7 101.8 92.8 81.1 ...</span>
+<span class="co">#&gt;  $ : num [1:100] 76.2 105.2 103.8 101.6 87.4 ...</span>
+<span class="co">#&gt;  $ : num [1:100] 104.8 107.7 76.8 94.8 104.1 ...</span>
+<span class="co">#&gt;  $ : num [1:100] 85.6 99.4 78.8 114.2 94.6 ...</span>
 <span class="co">#&gt;   [list output truncated]</span></pre></body></html></div>
 </div>
 </div>
@@ -228,7 +231,7 @@
 <div class="sourceCode" id="cb14"><html><body><pre class="r"><span class="no">x</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../../reference/univ.html">univ</a></span>(<span class="kw">n</span> <span class="kw">=</span> <span class="fl">100</span>, <span class="kw">rFUN</span> <span class="kw">=</span> <span class="no">rexp</span>, <span class="kw">rate</span> <span class="kw">=</span> <span class="fl">1</span>)</pre></body></html></div>
 <p>Explore the output.</p>
 <div class="sourceCode" id="cb15"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span>(<span class="no">x</span>, <span class="kw">list.len</span> <span class="kw">=</span> <span class="fl">6</span>)
-<span class="co">#&gt;  num [1:100] 0.649 0.707 0.677 2.234 0.932 ...</span>
+<span class="co">#&gt;  num [1:100] 0.43 0.689 0.229 0.783 0.465 ...</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span>(<span class="no">x</span>, <span class="kw">main</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/expression.html">expression</a></span>(<span class="fu"><a href="https://rdrr.io/r/grDevices/plotmath.html">italic</a></span>(<span class="no">exp</span>)(<span class="no">lambda</span> <span class="kw">==</span> <span class="fl">1</span>)))</pre></body></html></div>
 <p><img src="examples_univ_files/figure-html/unnamed-chunk-16-1.png" width="700"></p>
 </div>
@@ -240,12 +243,12 @@
 <p>Explore the output.</p>
 <div class="sourceCode" id="cb17"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span>(<span class="no">xstar</span>, <span class="kw">list.len</span> <span class="kw">=</span> <span class="fl">6</span>)
 <span class="co">#&gt; List of 100</span>
-<span class="co">#&gt;  $ : num [1:100] 1.369 0.202 2.137 0.426 1.271 ...</span>
-<span class="co">#&gt;  $ : num [1:100] 0.599 0.528 0.253 0.989 0.967 ...</span>
-<span class="co">#&gt;  $ : num [1:100] 0.5896 0.0467 1.7069 0.3881 0.1323 ...</span>
-<span class="co">#&gt;  $ : num [1:100] 1.038 1.693 1.478 0.966 3.874 ...</span>
-<span class="co">#&gt;  $ : num [1:100] 1.078 0.254 0.491 0.116 2.439 ...</span>
-<span class="co">#&gt;  $ : num [1:100] 1.4453 0.00435 0.03394 1.1291 0.60597 ...</span>
+<span class="co">#&gt;  $ : num [1:100] 0.926 1.461 0.805 0.337 2.455 ...</span>
+<span class="co">#&gt;  $ : num [1:100] 0.573 0.182 0.932 0.56 0.334 ...</span>
+<span class="co">#&gt;  $ : num [1:100] 0.896 2.32 0.163 1.106 5.849 ...</span>
+<span class="co">#&gt;  $ : num [1:100] 0.413 1.617 0.456 0.15 1.513 ...</span>
+<span class="co">#&gt;  $ : num [1:100] 0.182 0.363 0.877 0.452 0.649 ...</span>
+<span class="co">#&gt;  $ : num [1:100] 0.594 4.727 0.281 0.15 0.103 ...</span>
 <span class="co">#&gt;   [list output truncated]</span></pre></body></html></div>
 </div>
 </div>

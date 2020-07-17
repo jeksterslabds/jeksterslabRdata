@@ -38,6 +38,7 @@ context("Test univ Normal Distribution.")
 #+ sizes, echo = FALSE
 n <- 1000
 R <- 1000
+breaks
 Variable <- c(
   "`n`",
   "`R`"
@@ -114,29 +115,55 @@ foo <- function(X) {
 }
 thetahatstar <- fit(Xstar = Xstar, fitFUN = foo, rbind = TRUE)
 hist(thetahatstar[, 1],
-  main = expression("Sampling distribution of" ~ hat(sigma)^2 ~ (list(x, x))),
-  xlab = expression(hat(sigma)^2 ~ (list(x, x)))
+  main = expression("Sampling distribution of" ~ hat(sigma)^2 ~ (x)),
+  xlab = expression(hat(sigma)^2 ~ (x)),
+  freq = FALSE,
+  breaks = breaks
 )
+qqnorm(thetahatstar[, 1])
+qqline(thetahatstar[, 1])
 hist(thetahatstar[, 2],
   main = expression("Sampling distribution of" ~ hat(sigma)(list(x, y))),
-  xlab = expression(hat(sigma)(list(x, y)))
+  xlab = expression(hat(sigma)(list(x, y))),
+  freq = FALSE,
+  breaks = breaks
 )
+qqnorm(thetahatstar[, 2])
+qqline(thetahatstar[, 2])
 hist(thetahatstar[, 3],
   main = expression("Sampling distribution of" ~ hat(sigma)(list(x, z))),
-  xlab = expression(hat(sigma)(list(x, z)))
+  xlab = expression(hat(sigma)(list(x, z))),
+  freq = FALSE,
+  breaks = breaks
 )
+qqnorm(thetahatstar[, 3])
+qqline(thetahatstar[, 3])
 hist(thetahatstar[, 5],
-  main = expression("Sampling distribution of" ~ hat(sigma)^2 ~ (list(y, y))),
-  xlab = expression(hat(sigma)^2 ~ (list(y, y)))
+  main = expression("Sampling distribution of" ~ hat(sigma)^2 ~ (y)),
+  xlab = expression(hat(sigma)^2 ~ (y)),
+  freq = FALSE,
+  breaks = breaks
 )
+qqnorm(thetahatstar[, 5])
+qqline(thetahatstar[, 5])
 hist(thetahatstar[, 6],
   main = expression("Sampling distribution of" ~ hat(sigma)(list(y, z))),
-  xlab = expression(hat(sigma)(list(y, z)))
+  xlab = expression(hat(sigma)(list(y, z))),
+  freq = FALSE,
+  breaks = breaks
 )
+qqnorm(thetahatstar[, 6])
+qqline(thetahatstar[, 6])
+
 hist(thetahatstar[, 9],
-  main = expression("Sampling distribution of" ~ hat(sigma)^2 ~ (list(z, z))),
-  xlab = expression(hat(sigma)^2 ~ (list(z, z)))
+  main = expression("Sampling distribution of" ~ hat(sigma)^2 ~ (z)),
+  xlab = expression(hat(sigma)^2 ~ (z)),
+  freq = FALSE,
+  breaks = breaks
 )
+qqnorm(thetahatstar[, 9])
+qqline(thetahatstar[, 9])
+
 Sigmahatthetahatstar <- colMeans(thetahatstar)
 test_that("theta", {
   expect_equivalent(

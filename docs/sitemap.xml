@@ -37,9 +37,12 @@
     <loc>https://github.com/jeksterslabds/jeksterslabRdata//articles/jeksterslabRdata.html</loc>
   </url>
   <url>
-    <loc>https://github.com/jeksterslabds/jeksterslabRdata//articles/tests/test_univ_exp.html</loc>
+    <loc>https://github.com/jeksterslabds/jeksterslabRdata//articles/tests/tests_mvn.html</loc>
   </url>
   <url>
-    <loc>https://github.com/jeksterslabds/jeksterslabRdata//articles/tests/test_univ_norm.html</loc>
+    <loc>https://github.com/jeksterslabds/jeksterslabRdata//articles/tests/tests_univ_exp.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/jeksterslabds/jeksterslabRdata//articles/tests/tests_univ_norm.html</loc>
   </url>
 </urlset>
