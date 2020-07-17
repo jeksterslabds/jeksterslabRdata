@@ -1,52 +1,39 @@
-#' Fit
-#'
-#' @description Fit a function to each element
-#' of a list of data.
-#'
-#' @details The first argument of `fitFUN` should be `data`.
-#' The output of `fitFUN` should be a vector.
-#'
-#' Options for explicit parallelism are provided.
-#' See `par` and suceeding arguments.
-#'
 #' @author Ivan Jacob Agaloos Pesigan
+#'
+#' @title Fit a Function to Each Element of a List of Data
+#'
+#' @description Fits a function to each element of a list of data.
+#'
+#' @details The first argument of `fitFUN` should be `data`
+#'   The output of `fitFUN` should be a vector.
+#'
+#'   Options for explicit parallelism are provided.
+#'   See `par` and suceeding arguments.
+#'
 #' @family model fit functions
 #' @keywords model fit
 #' @inheritParams univ
 #' @param Xstar List.
-#' A list of length `R` with a data set of length `n`
-#' in each element of the list.
+#'   A list of length `R` with a data set of length `n` in each element of the list.
 #' @param fitFUN Function.
-#' Fit function to be applied to each element of `Xstar`.
+#'   Fit function to be applied to each element of `Xstar`.
 #' @param ... Argument to pass to `fitFUN`.
 #' @return Returns a list of parameter estimates.
 #' @examples
-#' n <- 4
-#' R <- 1000
-#' # normal distribution---------------------------------------------------------
-#' mu <- 100
-#' sigma2 <- 225
-#' sigma <- sqrt(sigma2)
-#' xstar <- univ(
-#'   n = n,
-#'   rFUN = rnorm,
-#'   R = R,
-#'   mean = mu,
-#'   sd = sigma
+#' xstar <- univ(n = 100, rFUN = rnorm, mean = 100, sd = sqrt(225), R = 100)
+#' thetahatstar <- fit(Xstar = xstar, fitFUN = mean, rbind = TRUE)
+#' mean(thetahatstar)
+#' Xstar <- mvn(
+#'   n = 100,
+#'   Sigma = matrix(c(1, .5, .5, 1), nrow = 2),
+#'   R = 100
 #' )
-#' str(xstar, list.len = 6)
-#' # fit the var function--------------------------------------------------------
-#' thetahatstar <- fit(
-#'   Xstar = xstar,
-#'   fitFUN = var,
-#'   rbind = TRUE,
-#'   par = FALSE
-#' )
-#' str(thetahatstar)
-#' # The sampling distribution of sample variances
-#' # follows a chi-square distribution with df = n - 1
-#' # when the population is normally distributed
-#' hist(thetahatstar)
+#' foo <- function(X) {
+#'   as.vector(cov(X))
+#' }
+#' thetahatstar <- fit(Xstar = Xstar, fitFUN = foo, rbind = TRUE)
+#' thetahatstar <- thetahatstar[, 2]
+#' mean(thetahatstar)
 #' @export
 fit <- function(Xstar,
                 fitFUN,
