@@ -393,7 +393,34 @@ and <code><a href='mvn.html'>mvn()</a></code> for multivariate normal data gener
 )
 <span class='no'>S</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/diag.html'>diag</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>225</span>, <span class='fl'>166.5</span>, <span class='fl'>116.5</span>))
 <span class='no'>F</span> <span class='kw'>&lt;-</span> <span class='no'>I</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/diag.html'>diag</a></span>(<span class='fl'>3</span>)
-<span class='no'>X</span> <span class='kw'>&lt;-</span> <span class='fu'>mvnram</span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>mu</span> <span class='kw'>=</span> <span class='no'>mu</span>, <span class='kw'>A</span> <span class='kw'>=</span> <span class='no'>A</span>, <span class='kw'>S</span> <span class='kw'>=</span> <span class='no'>S</span>, <span class='kw'>F</span> <span class='kw'>=</span> <span class='no'>F</span>, <span class='kw'>I</span> <span class='kw'>=</span> <span class='no'>I</span>)</div></pre>
+<span class='no'>X</span> <span class='kw'>&lt;-</span> <span class='fu'>mvnram</span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>mu</span> <span class='kw'>=</span> <span class='no'>mu</span>, <span class='kw'>A</span> <span class='kw'>=</span> <span class='no'>A</span>, <span class='kw'>S</span> <span class='kw'>=</span> <span class='no'>S</span>, <span class='kw'>F</span> <span class='kw'>=</span> <span class='no'>F</span>, <span class='kw'>I</span> <span class='kw'>=</span> <span class='no'>I</span>)
+<span class='no'>Xstar</span> <span class='kw'>&lt;-</span> <span class='fu'>mvnram</span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>mu</span> <span class='kw'>=</span> <span class='no'>mu</span>, <span class='kw'>A</span> <span class='kw'>=</span> <span class='no'>A</span>, <span class='kw'>S</span> <span class='kw'>=</span> <span class='no'>S</span>, <span class='kw'>F</span> <span class='kw'>=</span> <span class='no'>F</span>, <span class='kw'>I</span> <span class='kw'>=</span> <span class='no'>I</span>, <span class='kw'>R</span> <span class='kw'>=</span> <span class='fl'>100</span>)
+<span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span>(<span class='no'>Xstar</span>, <span class='kw'>list.len</span> <span class='kw'>=</span> <span class='fl'>6</span>)</div><div class='output co'>#&gt; List of 100
+#&gt;  $ : num [1:100, 1:3] 129 106 125 110 105 ...
+#&gt;   ..- attr(*, "dimnames")=List of 2
+#&gt;   .. ..$ : NULL
+#&gt;   .. ..$ : NULL
+#&gt;  $ : num [1:100, 1:3] 117.5 99.9 85.4 90.7 97.4 ...
+#&gt;   ..- attr(*, "dimnames")=List of 2
+#&gt;   .. ..$ : NULL
+#&gt;   .. ..$ : NULL
+#&gt;  $ : num [1:100, 1:3] 109.2 92.8 62.4 94.4 100.9 ...
+#&gt;   ..- attr(*, "dimnames")=List of 2
+#&gt;   .. ..$ : NULL
+#&gt;   .. ..$ : NULL
+#&gt;  $ : num [1:100, 1:3] 98.4 72.2 68.9 84.8 90.2 ...
+#&gt;   ..- attr(*, "dimnames")=List of 2
+#&gt;   .. ..$ : NULL
+#&gt;   .. ..$ : NULL
+#&gt;  $ : num [1:100, 1:3] 104 104 103 101 108 ...
+#&gt;   ..- attr(*, "dimnames")=List of 2
+#&gt;   .. ..$ : NULL
+#&gt;   .. ..$ : NULL
+#&gt;  $ : num [1:100, 1:3] 106.9 111.9 92.4 116.2 88.4 ...
+#&gt;   ..- attr(*, "dimnames")=List of 2
+#&gt;   .. ..$ : NULL
+#&gt;   .. ..$ : NULL
+#&gt;   [list output truncated]</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

@@ -10,7 +10,7 @@ articles:
   jeksterslabRdata: jeksterslabRdata.html
   test_univ_exp: tests/test_univ_exp.html
   test_univ_norm: tests/test_univ_norm.html
-last_built: 2020-07-17T06:00Z
+last_built: 2020-07-17T07:14Z
 urls:
   reference: https://github.com/jeksterslabds/jeksterslabRdata//reference
   article: https://github.com/jeksterslabds/jeksterslabRdata//articles

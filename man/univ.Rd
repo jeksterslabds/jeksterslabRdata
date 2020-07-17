@@ -108,8 +108,10 @@ Options for explicit parallelism are provided when \code{R > 1}
 especially when \code{R} is large. See \code{par} and suceeding arguments.
 }
 \examples{
-x <- univ(n = 1000, rFUN = rnorm, mean = 100, sd = sqrt(225))
-xstar <- univ(n = 1000, rFUN = rnorm, mean = 100, sd = sqrt(225), R = 1000)
+x <- univ(n = 100, rFUN = rnorm, mean = 100, sd = sqrt(225))
+str(x)
+xstar <- univ(n = 100, rFUN = rnorm, mean = 100, sd = sqrt(225), R = 100)
+str(xstar, list.len = 6)
 }
 \author{
 Ivan Jacob Agaloos Pesigan

@@ -133,6 +133,7 @@ Sigma <- matrix(
 )
 X <- mvn(n = 100, mu = mu, Sigma = Sigma)
 Xstar <- mvn(n = 100, mu = mu, Sigma = Sigma, R = 100)
+str(Xstar, list.len = 6)
 }
 \references{
 Venables, W. N., Ripley, B. D., & Venables, W. N. (2002).

@@ -168,6 +168,8 @@ A <- matrix(
 S <- diag(c(225, 166.5, 116.5))
 F <- I <- diag(3)
 X <- mvnram(n = 100, mu = mu, A = A, S = S, F = F, I = I)
+Xstar <- mvnram(n = 100, mu = mu, A = A, S = S, F = F, I = I, R = 100)
+str(Xstar, list.len = 6)
 }
 \references{
 McArdle, J. J. (2013).

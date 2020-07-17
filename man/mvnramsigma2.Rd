@@ -152,7 +152,9 @@ A <- matrix(
 sigma2 <- c(225, 225, 225)
 F <- I <- diag(3)
 X <- mvnramsigma2(n = 100, mu = mu, A = A, sigma2 = sigma2, F = F, I = I)
+str(X)
 Xstar <- mvnramsigma2(n = 100, mu = mu, A = A, sigma2 = sigma2, F = F, I = I, R = 100)
+str(Xstar, list.len = 6)
 }
 \seealso{
 Other multivariate data functions: 

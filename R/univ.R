@@ -42,8 +42,10 @@
 #'   stored in each element of a list of length `R`.
 #'   `par` and all succeeding arguments are only relevant when `R > 1`.
 #' @examples
-#' x <- univ(n = 1000, rFUN = rnorm, mean = 100, sd = sqrt(225))
-#' xstar <- univ(n = 1000, rFUN = rnorm, mean = 100, sd = sqrt(225), R = 1000)
+#' x <- univ(n = 100, rFUN = rnorm, mean = 100, sd = sqrt(225))
+#' str(x)
+#' xstar <- univ(n = 100, rFUN = rnorm, mean = 100, sd = sqrt(225), R = 100)
+#' str(xstar, list.len = 6)
 #' @export
 univ <- function(n, # rFUN
                  rFUN = rnorm,

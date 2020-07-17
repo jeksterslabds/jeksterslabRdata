@@ -33,6 +33,5 @@ Remotes:
 Suggests:
 	knitr,
 	rmarkdown,
-	testthat,
-    psych
+	testthat
 RoxygenNote: 7.1.1

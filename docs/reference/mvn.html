@@ -345,7 +345,33 @@ for more information on the multivariate normal distribution.</p>
   <span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>3</span>
 )
 <span class='no'>X</span> <span class='kw'>&lt;-</span> <span class='fu'>mvn</span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>mu</span> <span class='kw'>=</span> <span class='no'>mu</span>, <span class='kw'>Sigma</span> <span class='kw'>=</span> <span class='no'>Sigma</span>)
-<span class='no'>Xstar</span> <span class='kw'>&lt;-</span> <span class='fu'>mvn</span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>mu</span> <span class='kw'>=</span> <span class='no'>mu</span>, <span class='kw'>Sigma</span> <span class='kw'>=</span> <span class='no'>Sigma</span>, <span class='kw'>R</span> <span class='kw'>=</span> <span class='fl'>100</span>)</div></pre>
+<span class='no'>Xstar</span> <span class='kw'>&lt;-</span> <span class='fu'>mvn</span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>mu</span> <span class='kw'>=</span> <span class='no'>mu</span>, <span class='kw'>Sigma</span> <span class='kw'>=</span> <span class='no'>Sigma</span>, <span class='kw'>R</span> <span class='kw'>=</span> <span class='fl'>100</span>)
+<span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span>(<span class='no'>Xstar</span>, <span class='kw'>list.len</span> <span class='kw'>=</span> <span class='fl'>6</span>)</div><div class='output co'>#&gt; List of 100
+#&gt;  $ : num [1:100, 1:3] 73.5 107.9 83.4 105.4 100.1 ...
+#&gt;   ..- attr(*, "dimnames")=List of 2
+#&gt;   .. ..$ : NULL
+#&gt;   .. ..$ : NULL
+#&gt;  $ : num [1:100, 1:3] 87.1 95.7 102.3 118.8 90.1 ...
+#&gt;   ..- attr(*, "dimnames")=List of 2
+#&gt;   .. ..$ : NULL
+#&gt;   .. ..$ : NULL
+#&gt;  $ : num [1:100, 1:3] 109.1 109.7 104 112.8 84.6 ...
+#&gt;   ..- attr(*, "dimnames")=List of 2
+#&gt;   .. ..$ : NULL
+#&gt;   .. ..$ : NULL
+#&gt;  $ : num [1:100, 1:3] 89.9 76.6 122.5 129.7 90.8 ...
+#&gt;   ..- attr(*, "dimnames")=List of 2
+#&gt;   .. ..$ : NULL
+#&gt;   .. ..$ : NULL
+#&gt;  $ : num [1:100, 1:3] 122.1 90.9 94.7 132.6 92.8 ...
+#&gt;   ..- attr(*, "dimnames")=List of 2
+#&gt;   .. ..$ : NULL
+#&gt;   .. ..$ : NULL
+#&gt;  $ : num [1:100, 1:3] 101.7 109.7 107 80.4 96.9 ...
+#&gt;   ..- attr(*, "dimnames")=List of 2
+#&gt;   .. ..$ : NULL
+#&gt;   .. ..$ : NULL
+#&gt;   [list output truncated]</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

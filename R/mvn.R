@@ -67,6 +67,7 @@
 #' )
 #' X <- mvn(n = 100, mu = mu, Sigma = Sigma)
 #' Xstar <- mvn(n = 100, mu = mu, Sigma = Sigma, R = 100)
+#' str(Xstar, list.len = 6)
 #' @export
 mvn <- function(n, # mvrnorm
                 mu = NULL,
@@ -250,6 +251,8 @@ mvn <- function(n, # mvrnorm
 #' S <- diag(c(225, 166.5, 116.5))
 #' F <- I <- diag(3)
 #' X <- mvnram(n = 100, mu = mu, A = A, S = S, F = F, I = I)
+#' Xstar <- mvnram(n = 100, mu = mu, A = A, S = S, F = F, I = I, R = 100)
+#' str(Xstar, list.len = 6)
 #' @export
 mvnram <- function(n,
                    mu = NULL,
@@ -385,7 +388,9 @@ mvnram <- function(n,
 #' sigma2 <- c(225, 225, 225)
 #' F <- I <- diag(3)
 #' X <- mvnramsigma2(n = 100, mu = mu, A = A, sigma2 = sigma2, F = F, I = I)
+#' str(X)
 #' Xstar <- mvnramsigma2(n = 100, mu = mu, A = A, sigma2 = sigma2, F = F, I = I, R = 100)
+#' str(Xstar, list.len = 6)
 #' @export
 mvnramsigma2 <- function(n,
                          mu = NULL,

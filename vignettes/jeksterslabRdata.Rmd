@@ -114,7 +114,7 @@ Explore the output.
 
 ```{r}
 str(X)
-psych::pairs.panels(X)
+pairs(X)
 colMeans(X)
 cov(X)
 cor(X)
@@ -173,7 +173,7 @@ Explore the output.
 
 ```{r}
 str(X)
-psych::pairs.panels(X)
+pairs(X)
 colMeans(X)
 cov(X)
 cor(X)
