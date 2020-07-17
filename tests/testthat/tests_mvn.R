@@ -205,6 +205,11 @@ X_mvnramsigma2_mu_df_cov <- as.vector(cov(X_mvnramsigma2_mu_df))
 set.seed(42)
 X_mvnramsigma2_M_df <- mvnramsigma2(n = n, M = M, A = A, sigma2 = sigma2, F = F, I = I, empirical = TRUE, df = TRUE, varnames = varnames)
 X_mvnramsigma2_M_df_cov <- as.vector(cov(X_mvnramsigma2_M_df))
+# R = NULL equal to R = 1
+set.seed(42)
+x <- mvn(n = n, mu = mu, Sigma = Sigma)
+set.seed(42)
+y <- mvn(n = n, mu = mu, Sigma = Sigma, R = 1)
 # sum elemens of covariance matrix should be equivalent
 test_that("matrix", {
   expect_equivalent(
@@ -222,5 +227,11 @@ test_that("df", {
     sum(X_mvnram_M_df_cov),
     sum(X_mvnramsigma2_mu_df_cov),
     sum(X_mvnramsigma2_M_df_cov)
+  )
+})
+test_that("R = NULL equal to R = 1", {
+  expect_equivalent(
+    x,
+    y
   )
 })

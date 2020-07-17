@@ -52,7 +52,7 @@ such as regression coefficients and factor loadings.}
 
 \item{sigma2}{Numeric vector.
 Vector of variances \eqn{\sigma^2}.
-\strong{The first element should be the variance of an exogenous variable}}
+\strong{The first element should be the variance of an exogenous variable.}}
 
 \item{F}{\eqn{\mathbf{F}} matrix.
 Filter matrix

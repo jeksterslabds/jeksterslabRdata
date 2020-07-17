@@ -9,9 +9,10 @@ articles:
   examples_univ: examples/examples_univ.html
   jeksterslabRdata: jeksterslabRdata.html
   tests_mvn: tests/tests_mvn.html
+  tests_mvn.spin: tests/tests_mvn.spin.html
   tests_univ_exp: tests/tests_univ_exp.html
   tests_univ_norm: tests/tests_univ_norm.html
-last_built: 2020-07-17T09:24Z
+last_built: 2020-07-17T13:15Z
 urls:
   reference: https://github.com/jeksterslabds/jeksterslabRdata//reference
   article: https://github.com/jeksterslabds/jeksterslabRdata//articles

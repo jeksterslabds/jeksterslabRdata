@@ -76,6 +76,9 @@
       <a href="../../articles/tests/tests_mvn.html">Tests for the mvn(), mvnram(), and mvnramsigma2 functions</a>
     </li>
     <li>
+      <a href="../../articles/tests/tests_mvn.spin.html">Tests for the mvn(), mvnram(), and mvnramsigma2 functions</a>
+    </li>
+    <li>
       <a href="../../articles/tests/tests_univ_exp.html">Tests for the univ() function - Exponential Distribution</a>
     </li>
     <li>
@@ -141,24 +144,24 @@
 <div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="no">X</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../../reference/mvn.html">mvn</a></span>(<span class="kw">n</span> <span class="kw">=</span> <span class="fl">100</span>, <span class="kw">mu</span> <span class="kw">=</span> <span class="no">mu</span>, <span class="kw">Sigma</span> <span class="kw">=</span> <span class="no">Sigma</span>)</pre></body></html></div>
 <p>Explore the output.</p>
 <div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span>(<span class="no">X</span>)
-<span class="co">#&gt;  num [1:100, 1:3] 78.4 84.2 121.6 107 94.5 ...</span>
+<span class="co">#&gt;  num [1:100, 1:3] 105.8 109.3 119.7 91.5 101.9 ...</span>
 <span class="co">#&gt;  - attr(*, "dimnames")=List of 2</span>
 <span class="co">#&gt;   ..$ : NULL</span>
 <span class="co">#&gt;   ..$ : NULL</span>
 <span class="kw pkg">psych</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/psych/man/pairs.panels.html">pairs.panels</a></span>(<span class="no">X</span>)</pre></body></html></div>
 <p><img src="examples_mvn_files/figure-html/unnamed-chunk-5-1.png" width="700"></p>
 <div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/colSums.html">colMeans</a></span>(<span class="no">X</span>)
-<span class="co">#&gt; [1]  97.78035  99.50595 101.74872</span>
+<span class="co">#&gt; [1] 99.87371 98.55713 98.78347</span>
 <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cov</a></span>(<span class="no">X</span>)
 <span class="co">#&gt;           [,1]     [,2]      [,3]</span>
-<span class="co">#&gt; [1,] 189.25802 104.0962  34.83943</span>
-<span class="co">#&gt; [2,] 104.09616 245.3084 101.70116</span>
-<span class="co">#&gt; [3,]  34.83943 101.7012 222.93496</span>
+<span class="co">#&gt; [1,] 250.41352 135.2776  81.56604</span>
+<span class="co">#&gt; [2,] 135.27762 228.4324 139.98327</span>
+<span class="co">#&gt; [3,]  81.56604 139.9833 253.53888</span>
 <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span>(<span class="no">X</span>)
 <span class="co">#&gt;           [,1]      [,2]      [,3]</span>
-<span class="co">#&gt; [1,] 1.0000000 0.4831159 0.1696113</span>
-<span class="co">#&gt; [2,] 0.4831159 1.0000000 0.4348912</span>
-<span class="co">#&gt; [3,] 0.1696113 0.4348912 1.0000000</span></pre></body></html></div>
+<span class="co">#&gt; [1,] 1.0000000 0.5656115 0.3237116</span>
+<span class="co">#&gt; [2,] 0.5656115 1.0000000 0.5816677</span>
+<span class="co">#&gt; [3,] 0.3237116 0.5816677 1.0000000</span></pre></body></html></div>
 </div>
 <div id="multiple-random-data-sets" class="section level3">
 <h3 class="hasAnchor">
@@ -168,27 +171,27 @@
 <p>Explore the output.</p>
 <div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span>(<span class="no">Xstar</span>, <span class="kw">list.len</span> <span class="kw">=</span> <span class="fl">6</span>)
 <span class="co">#&gt; List of 1000</span>
-<span class="co">#&gt;  $ : num [1:100, 1:3] 94.8 106.6 127.5 98.2 60.4 ...</span>
+<span class="co">#&gt;  $ : num [1:100, 1:3] 89.7 101.8 117.6 109.5 79.5 ...</span>
 <span class="co">#&gt;   ..- attr(*, "dimnames")=List of 2</span>
 <span class="co">#&gt;   .. ..$ : NULL</span>
 <span class="co">#&gt;   .. ..$ : NULL</span>
-<span class="co">#&gt;  $ : num [1:100, 1:3] 110.4 133.5 91 115.4 77.2 ...</span>
+<span class="co">#&gt;  $ : num [1:100, 1:3] 99.1 82.9 91.6 108.1 96.3 ...</span>
 <span class="co">#&gt;   ..- attr(*, "dimnames")=List of 2</span>
 <span class="co">#&gt;   .. ..$ : NULL</span>
 <span class="co">#&gt;   .. ..$ : NULL</span>
-<span class="co">#&gt;  $ : num [1:100, 1:3] 83.7 50.4 104.1 88.2 100.4 ...</span>
+<span class="co">#&gt;  $ : num [1:100, 1:3] 96.4 98.6 106.2 104.9 93.6 ...</span>
 <span class="co">#&gt;   ..- attr(*, "dimnames")=List of 2</span>
 <span class="co">#&gt;   .. ..$ : NULL</span>
 <span class="co">#&gt;   .. ..$ : NULL</span>
-<span class="co">#&gt;  $ : num [1:100, 1:3] 94.5 80.9 76.9 107.2 106.3 ...</span>
+<span class="co">#&gt;  $ : num [1:100, 1:3] 73.5 92.1 103.1 68.9 100 ...</span>
 <span class="co">#&gt;   ..- attr(*, "dimnames")=List of 2</span>
 <span class="co">#&gt;   .. ..$ : NULL</span>
 <span class="co">#&gt;   .. ..$ : NULL</span>
-<span class="co">#&gt;  $ : num [1:100, 1:3] 93.1 104.2 88.4 84.4 111.6 ...</span>
+<span class="co">#&gt;  $ : num [1:100, 1:3] 112 83.4 91.5 104 83 ...</span>
 <span class="co">#&gt;   ..- attr(*, "dimnames")=List of 2</span>
 <span class="co">#&gt;   .. ..$ : NULL</span>
 <span class="co">#&gt;   .. ..$ : NULL</span>
-<span class="co">#&gt;  $ : num [1:100, 1:3] 103.6 94.7 67.4 79.8 114 ...</span>
+<span class="co">#&gt;  $ : num [1:100, 1:3] 104.4 98.9 99.8 125.1 95.9 ...</span>
 <span class="co">#&gt;   ..- attr(*, "dimnames")=List of 2</span>
 <span class="co">#&gt;   .. ..$ : NULL</span>
 <span class="co">#&gt;   .. ..$ : NULL</span>
